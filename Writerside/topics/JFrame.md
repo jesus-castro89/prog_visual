@@ -19,11 +19,23 @@ A continuación, veremos un ejemplo de cómo crear una ventana `JFrame` en Java:
 import javax.swing.JFrame;
 
 public class Ventana extends JFrame {
+
+    // Panel principal de la ventana creado en el editor visual
+    private JPanel mainPanel;
+    
     public Ventana() {
+        // Configurar la ventana
+        // Título de la ventana
         setTitle("Mi primera ventana");
+        // Tamaño de la ventana
         setSize(400, 300);
+        // Operación de cierre de la ventana
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Posición de la ventana
         setLocationRelativeTo(null);
+        // Añadir componentes a la ventana
+        add(mainPanel);
+        // Mostrar la ventana en pantalla
         setVisible(true);
     }
 
@@ -49,6 +61,16 @@ Para ello, utilizamos los siguientes métodos de la clase `JFrame`:
   - Por ejemplo, `setLocationRelativeTo(null)` centra la ventana en la pantalla.
 - `setVisible(boolean visible)`: Establece la visibilidad de la ventana.
   - Por ejemplo, `setVisible(true)` muestra la ventana en pantalla.
+- `add(Component c)`: Añade un componente a la ventana.
+  - Por ejemplo, `add(boton)` añade un botón a la ventana.
+
+> **Nota**: Cuando creamos una ventana `JFrame`, es importante establecer su tamaño, título, operación de cierre y
+> posición antes de mostrarla en pantalla con el método `setVisible(true)`.
+
+> **Nota**: Cuando trabajamos con el editor de formularios de IntelliJ IDEA, podemos arrastrar y soltar los componentes
+> que queremos añadir a la ventana, y personalizar sus propiedades y eventos de manera visual y sencilla. Sin embargo,
+> para que los cambios realizados en el editor se reflejen en el código, debemos nombrar el panel principal de la
+> ventana y agregarlo al contenedor de la ventana en el código mediante el método `add`.
 
 Al ejecutar este código, veremos una ventana con el título "Mi primera ventana" y un tamaño de 400x300 píxeles en el
 centro de la pantalla.
