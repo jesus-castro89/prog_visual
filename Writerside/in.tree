@@ -9,4 +9,9 @@
     <toc-element topic="starter.md"/>
     <toc-element topic="JFrame.md"/>
     <toc-element topic="eventos.md"/>
+    <toc-element toc-title="Elementos de Texto">
+        <toc-element topic="texto.md"/>
+        <toc-element topic="jlabel.md"/>
+        <toc-element topic="entry-text.md"/>
+    </toc-element>
 </instance-profile>

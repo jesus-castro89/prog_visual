@@ -33,8 +33,8 @@ public class Ventana extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Posición de la ventana
         setLocationRelativeTo(null);
-        // Añadir componentes a la ventana
-        add(mainPanel);
+        // Añadir el panel principal a la ventana
+        setContentPane(mainPanel);
         // Mostrar la ventana en pantalla
         setVisible(true);
     }
@@ -61,6 +61,8 @@ Para ello, utilizamos los siguientes métodos de la clase `JFrame`:
   - Por ejemplo, `setLocationRelativeTo(null)` centra la ventana en la pantalla.
 - `setVisible(boolean visible)`: Establece la visibilidad de la ventana.
   - Por ejemplo, `setVisible(true)` muestra la ventana en pantalla.
+- `setContentPane(Container c)`: Establece el panel principal de la ventana.
+  - Por ejemplo, `setContentPane(mainPanel)` establece el panel principal de la ventana como `mainPanel`.
 - `add(Component c)`: Añade un componente a la ventana.
   - Por ejemplo, `add(boton)` añade un botón a la ventana.
 
