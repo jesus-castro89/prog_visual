@@ -13,5 +13,12 @@
         <toc-element topic="texto.md"/>
         <toc-element topic="jlabel.md"/>
         <toc-element topic="entry-text.md"/>
+        <toc-element topic="text-event.md"/>
+    </toc-element>
+    <toc-element toc-title="Botónes">
+        <toc-element topic="botones.md"/>
+    </toc-element>
+    <toc-element toc-title="Practicas">
+        <toc-element topic="practica-1.md"/>
     </toc-element>
 </instance-profile>
