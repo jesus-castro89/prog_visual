@@ -1,4 +1,4 @@
-# La convenience de nombre CamelCase
+# La convención de nombre CamelCase
 
 La convención de nomenclatura CamelCase es un estilo de escritura de palabras compuestas o frases en las que las
 palabras individuales se escriben juntas sin espacios y cada palabra comienza con una letra mayúscula, excepto la
