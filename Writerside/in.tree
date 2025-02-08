@@ -7,6 +7,8 @@
                  start-page="starter.md">
 
     <toc-element topic="starter.md"/>
+    <toc-element topic="clases.md"/>
+    <toc-element topic="camel-case.md"/>
     <toc-element topic="JFrame.md"/>
     <toc-element topic="eventos.md"/>
     <toc-element toc-title="Elementos de Texto">
@@ -20,5 +22,6 @@
     </toc-element>
     <toc-element toc-title="Practicas">
         <toc-element topic="practica-1.md"/>
+        <toc-element topic="practica-2.md"/>
     </toc-element>
 </instance-profile>

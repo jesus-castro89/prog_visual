@@ -1,114 +1,64 @@
-# La clase JButton
+# Los botones en SWING
 
-La clase JButton es una clase que representa un botón en una interfaz gráfica de usuario. Un botón es un componente que
-el usuario puede pulsar para realizar una acción. La clase JButton es una subclase de la clase AbstractButton, que a su
-vez es una subclase de la clase JComponent.
+Los botones son componentes gráficos fundamentales en las interfaces de usuario, ya que permiten a los usuarios
+interactuar con el programa mediante la realización de acciones al hacer clic en ellos. En Java, los botones se pueden
+crear y personalizar utilizando la biblioteca SWING, que proporciona clases y métodos para trabajar con componentes
+gráficos.
 
-Cuenta con varios constructores, pero el más común es el que recibe un String con el texto que se mostrará en el botón.
+## Agregando botones a una ventana
 
-```java
-JButton boton = new JButton("Aceptar");
-```
+Para crear botónes en nuestra interfaz desde IntelliJ IDEA, primero debemos crear un nuevo proyecto de Java y una nueva
+ventana desde el editor de diseño. Luego, podemos arrastrar y soltar un botón desde la paleta de componentes a la
+ventana, lo que creará un nuevo botón en la interfaz.
 
-En el editor visual de IntelliJ IDEA, puedes arrastrar un botón desde la paleta de componentes y soltarlo en el panel de
-diseño. IntelliJ IDEA creará automáticamente el código necesario para instanciar un objeto de la clase JButton y
-añadirlo al panel de diseño.
+![button_1.png](button_1.png)
 
-Puedes editar y configurar el botón directamente en el editor visual. Por ejemplo, puedes cambiar el texto que se
-muestra en el botón, cambiar el color de fondo, cambiar el color del texto, cambiar la fuente, etc.
+Como puedes notar, en nuestra paleta de componentes tenemos un botón que podemos arrastrar y soltar en nuestra ventana.
 
-Con esto podrás personalizar el aspecto del botón para que se adapte a tus necesidades.
+## Personalizando un botón
 
-Ahora vemos los atributos y métodos más importantes de la clase JButton.
+Una vez que hemos agregado un botón a nuestra ventana, podemos personalizarlo cambiando su texto, tamaño, color y
+otros atributos. Para ello, podemos seleccionar el botón en el editor de diseño y modificar sus propiedades en la
+ventana de propiedades.
 
-## Atributos
+![button_2](button_2.png)
 
-La clase JButton cuenta con varios atributos que te permiten personalizar el aspecto y el comportamiento del botón.
+> **Nota:** Si cambiamos el texto del botón, es posible que se actualize automáticamente el nombre del componente en la
+> clase. Por lo que si esto sucede, deberemos cambiar el nombre del componente en la clase y la vista de diseño para
+> mantener la consistencia.
 
-### Texto
+## Manejando eventos de botón
 
-El texto que se muestra en el botón. Puedes cambiar el texto con el método `setText()`.
+Una vez que hemos agregado y personalizado un botón, podemos manejar eventos de clic en el botón para realizar acciones
+específicas.
 
-```java
-boton.setText("Aceptar");
-```
+Para ellos seguiremos los siguientes pasos:
 
-### Icono
+1. Seleccionamos el botón en el editor de diseño.
+2. Hacemos clic derecho sobre el botón y seleccionamos `Create Listener`
+    - ![button_3.png](button_3.png)
+3. Seleccionamos el evento que queremos manejar, por ejemplo `ActionListener`.
+    - ![button_4.png](button_4.png)
+    - Esto abrirá la siguiente ventana en la que deberemos de seleccionar el método que se ejecutará al hacer clic en el
+      botón. Por defecto, se selecciona `actionPerformed`. Hacemos clic en `OK`.
+    - ![button_5.png](button_5.png)
+4. Se creará un nuevo método en la clase que manejará el evento del botón. Podemos agregar el código necesario para
+   realizar la acción deseada dentro de este método.
+    - El código generado por IntelliJ IDEA será similar al siguiente:
+      ```java
+         button1.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 
+             }
+         });
+      ```
+5. Ahora puedes que deseas ejecutar al hacer clic en el botón dentro del método `actionPerformed`.
+6. Finalmente, ejecutamos la aplicación y verificamos que la acción se realice correctamente al hacer clic en el botón.
+7. ¡Listo! Has creado un botón y has manejado un evento de clic en Java.
 
-Un icono que se muestra en el botón. Puedes cambiar el icono con el método `setIcon()`.
+## Conclusión
 
-```java
-boton.setIcon(new ImageIcon("icono.png"));
-```
-
-> **Nota:** Para usar un icono en un botón, necesitas un objeto de la clase ImageIcon. Puedes crear un objeto de la
-> clase ImageIcon pasando la ruta del archivo de imagen como argumento al constructor.
-
-> **Nota:** El icono se muestra a la izquierda del texto en el botón. Aunque puedes cambiar la posición del icono con el
-> método `setHorizontalTextPosition()`.
-
-### Habilitado
-
-Un booleano que indica si el botón está habilitado o no. Puedes habilitar o deshabilitar el botón con el método
-`setEnabled()`.
-
-```java
-boton.setEnabled(false);
-```
-
-### Visible
-
-Un booleano que indica si el botón es visible o no. Puedes hacer visible o invisible el botón con el método
-`setVisible()`.
-
-```java
-boton.setVisible(false);
-```
-
-### Fuente
-
-La fuente del texto que se muestra en el botón. Puedes cambiar la fuente con el método `setFont()`.
-
-```java
-boton.setFont(new Font("Arial", Font.PLAIN, 12));
-```
-
-### Color de fondo
-
-El color de fondo del botón. Puedes cambiar el color de fondo con el método `setBackground()`.
-
-```java
-boton.setBackground(Color.RED);
-```
-
-### Color del texto
-
-El color del texto que se muestra en el botón. Puedes cambiar el color del texto con el método `setForeground()`.
-
-```java
-boton.setForeground(Color.WHITE);
-```
-
-### Color de borde
-
-El color del borde del botón. Puedes cambiar el color del borde con el método `setBorder()`.
-
-```java
-boton.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-```
-
-### Margen
-
-El margen interno del botón. Puedes cambiar el margen con el método `setMargin()`.
-
-```java
-boton.setMargin(new Insets(10, 20, 10, 20));
-```
-
-### Tamaño
-
-El tamaño del botón. Puedes cambiar el tamaño con el método `setSize()`.
-
-```java
-boton.setSize(100, 50);
-```
+Los botones son componentes esenciales en las interfaces de usuario, ya que permiten a los usuarios interactuar con el
+programa de manera sencilla y directa. Al aprender a crear y personalizar botones en Java, podrás mejorar la
+interactividad de tus aplicaciones y proporcionar a los usuarios una experiencia más intuitiva y agradable.
