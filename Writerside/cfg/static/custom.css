@@ -1,0 +1,110 @@
+/* Custom CSS */
+@import url('https://fonts.googleapis.com/css?family=Saira:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Rosario:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+
+article.layout.layout--grow.app__article {
+    padding-top:0;
+}
+.plantuml {
+    text-align: center;
+}
+
+pre[class*=language-]  {
+    code {
+        font-family: "Fira Code", monospace!important;
+        font-size: 1rem;
+        line-height: 1.25;
+        font-weight: 400;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+    }
+}
+
+.code{
+    font-family: "Fira Code", monospace;
+}
+
+.title__content {
+    line-height: 1.2;
+    font-weight: 700;
+    font-family: "Archivo", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+.article__h1 {
+    .title__content {
+        font-size: 2.5rem;
+    }
+}
+
+.article__h2 {
+    .title__content {
+        font-size: 2rem;
+    }
+}
+
+.article__h3 {
+    width: 100%;
+
+    .title__content {
+        font-size: 1.75rem;
+    }
+}
+
+.article__h4 {
+    .title__content {
+        font-size: 1.5rem;
+    }
+}
+
+.article__h1, .article__h2, .article__h3, .article__h4, .article__h5, .article__h6 {
+    margin-top: 0.5em;
+    padding-top: 0;
+}
+
+.article__p {
+    font-size: 1.1rem;
+    line-height: 1.25;
+    font-weight: 400;
+    font-family: "Rosario", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+}
+
+.toc-item {
+    font-size: 1.1rem;
+    line-height: 1.25;
+    font-weight: 400;
+    font-family: "Saira", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings: "wdth" 100;
+
+    &.toc-item--selected {
+        font-weight: 700;
+    }
+}
+
+.toc-node {
+    .toc-item {
+        font-size: 1rem;
+        line-height: 1.25;
+        font-family: "Saira", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+        font-variation-settings: "wdth" 100;
+        font-weight: 400;
+    }
+
+    &.toc-node--selected {
+        .toc-item {
+            font-weight: 700;
+        }
+    }
+}
