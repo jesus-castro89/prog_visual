@@ -5,15 +5,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
 
 article.layout.layout--grow.app__article {
-    padding-top:0;
+    padding-top: 20px;
 }
+
+.app__sub-header {
+    height: 5px;
+}
+
 .plantuml {
     text-align: center;
 }
 
-pre[class*=language-]  {
+pre[class*=language-] {
     code {
-        font-family: "Fira Code", monospace!important;
+        font-family: "Fira Code", monospace !important;
         font-size: 1rem;
         line-height: 1.25;
         font-weight: 400;
@@ -23,7 +28,7 @@ pre[class*=language-]  {
     }
 }
 
-.code{
+.code {
     font-family: "Fira Code", monospace;
 }
 
