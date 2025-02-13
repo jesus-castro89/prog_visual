@@ -23,5 +23,6 @@
     <toc-element toc-title="Practicas">
         <toc-element topic="practica-1.md"/>
         <toc-element topic="practica-2.md"/>
+        <toc-element topic="practica-3.md"/>
     </toc-element>
 </instance-profile>
