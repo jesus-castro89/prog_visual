@@ -114,13 +114,45 @@ public enum Operation {
 }
 ```
 
-### La clase `CalculadoraController`
+### El evento de los números
 
-1. Crea un nuevo paquete llamado `controllers` dentro del paquete `calculadora`.
-2. Crea una nueva clase llamada `CalculadoraController` en el paquete `controllers`.
-3. Agrega un campo de tipo `Calculadora` a la clase.
-4. Agrega un campo de tipo `Operation` para almacenar la operación actual.
-5. Agrega campos de tipo `double` para almacenar el primer y segundo operando.
-6. Crear un constructor para la clase que reciba una instancia de `Calculadora` y la asigne al campo correspondiente.
-7. Agrega un método `init` que inicialice los campos de la clase.
-8. 
+1. Crea un nuevo paquete llamado `events` dentro del paquete `calculadora`.
+2. Crea una nueva clase llamada `NumberAction` en el paquete `events`.
+3. Haz que la clase implemente la interfaz `ActionListener`.
+4. Agregamos los siguientes atributos:
+    - private final Calculadora calculadora;
+    - private final int number;
+5. Creamos un constructor que reciba como parámetros una instancia de `Calculadora` y un número entero.
+6. Implementamos el método `actionPerformed` y dentro de él, agregamos el siguiente código:
+    - ```java
+      public void actionPerformed(java.awt.event.ActionEvent e) {
+        calculadora.getTxtResultado().setText(calculadora.getTxtResultado().getText() + number);
+      }
+      ```
+7. Por el momento hemos terminado con el evento de los números.
+
+El código de la clase `NumberAction` debería verse de la siguiente manera:
+
+```java
+package calculadora.events;
+
+import calculadora.Calculadora;
+
+import java.awt.event.ActionListener;
+
+public class NumberAction implements ActionListener {
+
+    private final int number;
+    private final Calculadora calculadora;
+
+    public NumberAction(Calculadora calculadora, int number) {
+        this.number = number;
+        this.calculadora = calculadora;
+    }
+
+    @Override
+    public void actionPerformed(java.awt.event.ActionEvent e) {
+        calculadora.getTxtResultado().setText(calculadora.getTxtResultado().getText() + number);
+    }
+}
+```
