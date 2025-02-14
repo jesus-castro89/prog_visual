@@ -312,3 +312,85 @@ public class OperationAction implements ActionListener {
     }
 }
 ```
+
+### Código final de la clase `Calculadora`
+
+Una vez que hemos implementado la lógica de la calculadora, la clase `Calculadora` debería verse de la siguiente manera:
+
+```java
+package calculadora;
+
+import calculadora.controllers.CalculadoraController;
+import calculadora.events.NumberAction;
+import calculadora.events.OperationAction;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class Calculadora extends JFrame {
+
+    private JPanel mainPanel;
+    private JTextField txtResultado;
+    private JButton btn6;
+    private JButton btn7;
+    private JButton btn8;
+    private JButton btn9;
+    private JButton btn2;
+    private JButton btn3;
+    private JButton btn4;
+    private JButton btn5;
+    private JButton btn0;
+    private JButton btn1;
+    private JButton btnSuma;
+    private JButton btnIgual;
+    private JButton btnResta;
+    private JButton btnMulti;
+    private JButton btnDiv;
+    private JButton btnLimpiar;
+    private CalculadoraController controller;
+
+    public static void main(String[] args) {
+        new Calculadora();
+    }
+
+    public Calculadora() {
+        // Controlador de la calculadora
+        controller = new CalculadoraController(this);
+        // Configuración de la ventana
+        setTitle("Calculadora");
+        setSize(300, 400);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setContentPane(mainPanel);
+        setVisible(true);
+        // Eventos
+        // Números
+        btn0.addActionListener(new NumberAction(this, 0));
+        btn1.addActionListener(new NumberAction(this, 1));
+        btn2.addActionListener(new NumberAction(this, 2));
+        btn3.addActionListener(new NumberAction(this, 3));
+        btn4.addActionListener(new NumberAction(this, 4));
+        btn5.addActionListener(new NumberAction(this, 5));
+        btn6.addActionListener(new NumberAction(this, 6));
+        btn7.addActionListener(new NumberAction(this, 7));
+        btn8.addActionListener(new NumberAction(this, 8));
+        btn9.addActionListener(new NumberAction(this, 9));
+        // Operaciones
+        btnSuma.addActionListener(new OperationAction(this, Operation.ADDITION));
+        btnResta.addActionListener(new OperationAction(this, Operation.SUBTRACTION));
+        btnMulti.addActionListener(new OperationAction(this, Operation.MULTIPLICATION));
+        btnDiv.addActionListener(new OperationAction(this, Operation.DIVISION));
+        btnIgual.addActionListener(new OperationAction(this, Operation.EQUALS));
+        btnLimpiar.addActionListener(new OperationAction(this, Operation.CLEAR));
+    }
+
+    public JTextField getTxtResultado() {
+        return txtResultado;
+    }
+
+    public CalculadoraController getController() {
+        return controller;
+    }
+}
+```
