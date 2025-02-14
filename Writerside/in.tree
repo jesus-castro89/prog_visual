@@ -11,6 +11,7 @@
     <toc-element topic="camel-case.md"/>
     <toc-element topic="JFrame.md"/>
     <toc-element topic="eventos.md"/>
+    <toc-element topic="enums.md"/>
     <toc-element toc-title="Elementos de Texto">
         <toc-element topic="texto.md"/>
         <toc-element topic="jlabel.md"/>
