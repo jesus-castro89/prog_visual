@@ -156,3 +156,12 @@ public class NumberAction implements ActionListener {
     }
 }
 ```
+
+Ahora deberemos agregar a los botones de la calculadora el evento de los números. Para ello, colocaremos el siguiente
+código en el constructor de la clase `Calculadora`:
+
+```java
+btn1.addActionListener(new NumberAction(this, 1));
+```
+
+Repetiremos este paso para los botones `btn2`, `btn3`, `btn4`, `btn5`, `btn6`, `btn7`, `btn8`, `btn9` y `btn0`.
