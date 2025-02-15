@@ -1,4 +1,4 @@
-# Practica 3: Creando una calculadora en Java
+# Iniciando el proyecto de la calculadora en Java
 
 En esta práctica, aprenderemos a crear una calculadora básica en Java utilizando la biblioteca SWING. Las calculadoras
 son herramientas útiles que permiten a los usuarios realizar operaciones matemáticas de forma rápida y sencilla. Al
@@ -44,353 +44,72 @@ usuario.
     - > **Nota:** En este ejemplo los botones se llamarán btn1, ..., btn9, btnSuma, btnResta, btnMultiplicacion,
       btnDivision, btnIgual y btnLimpiar. Pero tú puedes nombrarlos como desees.
       > **Nota:** De igual manera, puedes personalizar la disposición y diseño de los botones según tus preferencias.
-9. Si hemos seguimos los pasos anteriores, la clase `Calculadora` debería verse de la siguiente manera:
+9. Agrega la función `getTxtResultado` para obtener el texto del campo de texto `txtResultado`.
     ```java
-    public class Calculadora extends JFrame {
-        private JPanel mainPanel;
-        private JTextField txtResultado;
-        private JButton btn1;
-        private JButton btn2;
-        private JButton btn3;
-        private JButton btn4;
-        private JButton btn5;
-        private JButton btn6;
-        private JButton btn7;
-        private JButton btn8;
-        private JButton btn9;
-        private JButton btnSuma;
-        private JButton btnResta;
-        private JButton btnMultiplicacion;
-        private JButton btnDivision;
-        private JButton btnIgual;
-        private JButton btnLimpiar;
-
-        public Calculadora() {
-            setTitle("Calculadora");
-            setSize(300, 400);
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setLocationRelativeTo(null);
-            setContentPane(mainPanel);
-            setVisible(true);
-        }
+    public String getTxtResultado() {
+        return txtResultado.getText();
     }
     ```
-10. Podemos crear la función main para ejecutar la aplicación y mostrar la ventana de la calculadora.
+   > **Nota:** Para agregar esta función, haz clic derecho sobre el campo de texto `txtResultado` en el editor visual y
+   > selecciona `Generate` > `Getter`. Selecciona el nombre del atributo y haz clic en `OK`.
+10. Crea la función main para ejecutar la aplicación y mostrar la ventana de la calculadora.
     ```java
     public static void main(String[] args) {
         new Calculadora();
     }
     ```
-11. Ejecuta la aplicación y verifica que la ventana de la calculadora se muestre correctamente.
+11. Ejecuta la aplicación y verífica que la ventana de la calculadora se muestre correctamente.
 12. ¡Listo! Has creado la interfaz de la calculadora en Java.
 
 > **Nota:** Para esta práctica agregaré un margen sobre el panel principal de 10px. Para ello, selecciona el panel en el
 > editor visual y en la barra de propiedades, busca la propiedad `margins` y coloca el valor `10` en los campos `top`,
 > `left`, `bottom` y `right`.
 
-## Implementando la lógica de la calculadora
-
-### El enumerado de las operaciones
-
-1. Crea un nuevo enumerado llamado `Operation` en el paquete `calculadora`.
-2. Agrega las siguientes constantes al enumerado:
-    - `ADDITION`
-    - `SUBTRACTION`
-    - `MULTIPLICATION`
-    - `DIVISION`
-    - `EQUALS`
-    - `CLEAR`
-
-El enumerado debería verse de la siguiente manera:
-
-```java
-public enum Operation {
-    ADDITION,
-    SUBTRACTION,
-    MULTIPLICATION,
-    DIVISION,
-    EQUALS,
-    CLEAR
-}
-```
-
-### El evento de los números
-
-1. Crea un nuevo paquete llamado `events` dentro del paquete `calculadora`.
-2. Crea una nueva clase llamada `NumberAction` en el paquete `events`.
-3. Haz que la clase implemente la interfaz `ActionListener`.
-4. Agregamos los siguientes atributos:
-    - private final Calculadora calculadora;
-    - private final int number;
-5. Creamos un constructor que reciba como parámetros una instancia de `Calculadora` y un número entero.
-6. Implementamos el método `actionPerformed` y dentro de él, agregamos el siguiente código:
-    - ```java
-      public void actionPerformed(java.awt.event.ActionEvent e) {
-        calculadora.getTxtResultado().setText(calculadora.getTxtResultado().getText() + number);
-      }
-      ```
-7. Por el momento hemos terminado con el evento de los números.
-
-El código de la clase `NumberAction` debería verse de la siguiente manera:
-
-```java
-package calculadora.events;
-
-import calculadora.Calculadora;
-
-import java.awt.event.ActionListener;
-
-public class NumberAction implements ActionListener {
-
-    private final int number;
-    private final Calculadora calculadora;
-
-    public NumberAction(Calculadora calculadora, int number) {
-        this.number = number;
-        this.calculadora = calculadora;
-    }
-
-    @Override
-    public void actionPerformed(java.awt.event.ActionEvent e) {
-        calculadora.getTxtResultado().setText(calculadora.getTxtResultado().getText() + number);
-    }
-}
-```
-
-Ahora deberemos agregar a los botones de la calculadora el evento de los números. Para ello, colocaremos el siguiente
-código en el constructor de la clase `Calculadora`:
-
-```java
-btn1.addActionListener(new NumberAction(this, 1));
-```
-
-Repetiremos este paso para los botones `btn2`, `btn3`, `btn4`, `btn5`, `btn6`, `btn7`, `btn8`, `btn9` y `btn0`.
-
-### El controlador de la calculadora
-
-1. Crea un nuevo paquete llamado `controllers` dentro del paquete `calculadora`.
-2. Crea una nueva clase llamada `CalculadoraController` en el paquete `controllers`.
-3. Agrega los siguientes atributos a la clase:
-    - private final Calculadora calculadora;
-    - private int number1, number2;
-    - private Operation lastOperation, operation;
-4. Crea un constructor que reciba como parámetro una instancia de `Calculadora`.
-5. Agrega un método `calculate` que calcule el resultado de la operación en caso de que se presione nuevamente una
-   acción diferente a la igualdad.
-6. Agrega un método `makeOperation` que almacene en las variables `number1` y `number2` los valores actuales y la
-   operación a realizar.
-7. Una vez hecho lo anterior, deberemos agregar el controlador a los botones de operaciones. Para ello, colocaremos el
-   siguiente código en el constructor de la clase `Calculadora`:
-    - ```java
-      btnSuma.addActionListener(new OperationAction(this, Operation.ADDITION));
-      btnResta.addActionListener(new OperationAction(this, Operation.SUBTRACTION));
-      btnMultiplicacion.addActionListener(new OperationAction(this, Operation.MULTIPLICATION));
-      btnDivision.addActionListener(new OperationAction(this, Operation.DIVISION));
-      btnIgual.addActionListener(new OperationAction(this, Operation.EQUALS));
-      btnLimpiar.addActionListener(new OperationAction(this, Operation.CLEAR));
-      ```
-8. Por el momento hemos terminado con el controlador de la calculadora.
-
-El código de la clase `CalculadoraController` debería verse de la siguiente manera:
-
-```java
-package calculadora.controllers;
-
-import calculadora.Calculadora;
-import calculadora.Operation;
-
-public class CalculadoraController {
-
-    private final Calculadora calculadora;
-    private int number1, number2;
-    private Operation lastOperation, operation;
-
-    public CalculadoraController(Calculadora calculadora) {
-
-        this.calculadora = calculadora;
-        this.number1 = 0;
-        this.number2 = 0;
-        this.operation = null;
-        this.lastOperation = null;
-    }
-
-    public void makeOperation(Operation operation) {
-
-        if (this.operation == null) {
-            this.operation = operation;
-            this.number1 = Integer.parseInt(calculadora.getTxtResultado().getText());
-            this.calculadora.getTxtResultado().setText("");
-        } else {
-            this.lastOperation = this.operation;
-            this.operation = operation;
-            this.number2 = Integer.parseInt(calculadora.getTxtResultado().getText());
-        }
-        switch (this.operation) {
-            case ADDITION:
-            case SUBTRACTION:
-            case MULTIPLICATION:
-            case DIVISION:
-                calculate();
-                break;
-            case EQUALS:
-                calculate();
-                this.calculadora.getTxtResultado().setText(String.valueOf(number1));
-                break;
-            case CLEAR:
-                this.number1 = 0;
-                this.number2 = 0;
-                this.lastOperation = null;
-                this.operation = null;
-                this.calculadora.getTxtResultado().setText("");
-                break;
-        }
-    }
-
-    private void calculate() {
-
-        if (lastOperation != null) {
-
-            switch (lastOperation) {
-                case ADDITION:
-                    number1 += number2;
-                    break;
-                case SUBTRACTION:
-                    number1 -= number2;
-                    break;
-                case MULTIPLICATION:
-                    number1 *= number2;
-                    break;
-                case DIVISION:
-                    number1 /= number2;
-                    break;
-            }
-            calculadora.getTxtResultado().setText("");
-        }
-    }
-}
-```
-
-### El evento de las operaciones
-
-1. Crea una nueva clase llamada `OperationAction` en el paquete `events`.
-2. Haz que la clase implemente la interfaz `ActionListener`.
-3. Agregamos los siguientes atributos:
-    - private final Calculadora calculadora;
-    - private final Operation operation;
-4. Creamos un constructor que reciba como parámetros una instancia de `Calculadora` y una operación.
-5. Implementamos el método `actionPerformed` y dentro de él, agregamos el siguiente código:
-    - ```java
-      public void actionPerformed(java.awt.event.ActionEvent e) {
-        calculadora.getCalculadoraController().makeOperation(operation);
-      }
-      ```
-6. Por el momento hemos terminado con el evento de las operaciones.
-
-El código de la clase `OperationAction` debería verse de la siguiente manera:
-
-```java
-package calculadora.events;
-
-import calculadora.Calculadora;
-import calculadora.Operation;
-
-import java.awt.event.ActionListener;
-
-public class OperationAction implements ActionListener {
-
-    private final Operation operation;
-    private final Calculadora calculadora;
-
-    public OperationAction(Calculadora calculadora, Operation operation) {
-        this.operation = operation;
-        this.calculadora = calculadora;
-    }
-
-    @Override
-    public void actionPerformed(java.awt.event.ActionEvent e) {
-        calculadora.getController().makeOperation(operation);
-    }
-}
-```
-
-### Código final de la clase `Calculadora`
-
-Una vez que hemos implementado la lógica de la calculadora, la clase `Calculadora` debería verse de la siguiente manera:
+Si hemos seguimos los pasos anteriores, la clase `Calculadora` debería verse de la siguiente manera:
 
 ```java
 package calculadora;
 
-import calculadora.controllers.CalculadoraController;
-import calculadora.events.NumberAction;
-import calculadora.events.OperationAction;
-
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Calculadora extends JFrame {
 
-    private JPanel mainPanel;
     private JTextField txtResultado;
+    private JPanel mainPanel;
     private JButton btn6;
     private JButton btn7;
     private JButton btn8;
     private JButton btn9;
-    private JButton btn2;
-    private JButton btn3;
-    private JButton btn4;
     private JButton btn5;
-    private JButton btn0;
+    private JButton btn4;
+    private JButton btn3;
+    private JButton btn2;
     private JButton btn1;
+    private JButton btn0;
     private JButton btnSuma;
     private JButton btnIgual;
     private JButton btnResta;
     private JButton btnMulti;
     private JButton btnDiv;
-    private JButton btnLimpiar;
-    private CalculadoraController controller;
+    private JButton btnClear;
 
     public static void main(String[] args) {
         new Calculadora();
     }
 
     public Calculadora() {
-        // Controlador de la calculadora
-        controller = new CalculadoraController(this);
-        // Configuración de la ventana
+
         setTitle("Calculadora");
         setSize(300, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
         setContentPane(mainPanel);
+        setResizable(false);
+        setLocationRelativeTo(null);
         setVisible(true);
-        // Eventos
-        // Números
-        btn0.addActionListener(new NumberAction(this, 0));
-        btn1.addActionListener(new NumberAction(this, 1));
-        btn2.addActionListener(new NumberAction(this, 2));
-        btn3.addActionListener(new NumberAction(this, 3));
-        btn4.addActionListener(new NumberAction(this, 4));
-        btn5.addActionListener(new NumberAction(this, 5));
-        btn6.addActionListener(new NumberAction(this, 6));
-        btn7.addActionListener(new NumberAction(this, 7));
-        btn8.addActionListener(new NumberAction(this, 8));
-        btn9.addActionListener(new NumberAction(this, 9));
-        // Operaciones
-        btnSuma.addActionListener(new OperationAction(this, Operation.ADDITION));
-        btnResta.addActionListener(new OperationAction(this, Operation.SUBTRACTION));
-        btnMulti.addActionListener(new OperationAction(this, Operation.MULTIPLICATION));
-        btnDiv.addActionListener(new OperationAction(this, Operation.DIVISION));
-        btnIgual.addActionListener(new OperationAction(this, Operation.EQUALS));
-        btnLimpiar.addActionListener(new OperationAction(this, Operation.CLEAR));
     }
 
     public JTextField getTxtResultado() {
         return txtResultado;
-    }
-
-    public CalculadoraController getController() {
-        return controller;
     }
 }
 ```

@@ -24,6 +24,9 @@
     <toc-element toc-title="Practicas">
         <toc-element topic="practica-1.md"/>
         <toc-element topic="practica-2.md"/>
-        <toc-element topic="practica-3.md"/>
+        <toc-element toc-title="Practica 3: Creando una Calculadora">
+            <toc-element topic="practica-3.md"/>
+            <toc-element topic="calculadora-logic.md"/>
+        </toc-element>
     </toc-element>
 </instance-profile>
