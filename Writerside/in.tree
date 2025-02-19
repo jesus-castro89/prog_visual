@@ -9,6 +9,7 @@
     <toc-element topic="starter.md"/>
     <toc-element topic="clases.md"/>
     <toc-element topic="camel-case.md"/>
+    <toc-element topic="project-compress.md"/>
     <toc-element topic="JFrame.md"/>
     <toc-element topic="eventos.md"/>
     <toc-element topic="enums.md"/>
