@@ -27,6 +27,7 @@
     </toc-element>
     <toc-element toc-title="Listas desplegables">
         <toc-element topic="jcombobox.md"/>
+        <toc-element topic="visible-combo.md"/>
     </toc-element>
     <toc-element toc-title="Practicas">
         <toc-element topic="practica-1.md"/>
