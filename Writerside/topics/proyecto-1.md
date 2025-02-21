@@ -193,7 +193,7 @@ geométrica seleccionada.
 
     private void mostrarCamposEntrada() {
         // Obtenemos el índice del elemento seleccionado
-        int index = comboBox1.getSelectedIndex();
+        int index = listaFiguras.getSelectedIndex();
         // Mostramos los campos correspondientes
         // al índice seleccionado
         switch (index) {
