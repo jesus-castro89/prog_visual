@@ -97,30 +97,30 @@ panel principal de la ventana y configuraremos la ventana para que sea visible y
 public class CalculadoraAreasPerimetrosUI extends JFrame {
 
     private JPanel panelPrincipal;
-    private JComboBox<String> comboBoxFiguras;
-    private JLabel labelBase;
-    private JTextField textFieldBase;
-    private JLabel labelAltura;
-    private JTextField textFieldAltura;
-    private JLabel labelRadio;
-    private JTextField textFieldRadio;
-    private JLabel labelLado;
-    private JTextField textFieldLado;
-    private JLabel labelDiagonalMayor;
-    private JTextField textFieldDiagonalMayor;
-    private JLabel labelDiagonalMenor;
-    private JTextField textFieldDiagonalMenor;
-    private JLabel labelNumeroLados;
-    private JTextField textFieldNumeroLados;
-    private JLabel labelApotema;
-    private JTextField textFieldApotema;
-    private JLabel labelBaseMayor;
-    private JTextField textFieldBaseMayor;
-    private JLabel labelBaseMenor;
-    private JTextField textFieldBaseMenor;
-    private JButton buttonCalcular;
-    private JButton buttonLimpiar;
-    private JLabel labelResultado;
+    private JComboBox<String> listaFiguras;
+    private JLabel lblBase;
+    private JTextField txtBase;
+    private JLabel lblAltura;
+    private JTextField txtAltura;
+    private JLabel lblRadio;
+    private JTextField txtRadio;
+    private JLabel lblLado;
+    private JTextField txtLado;
+    private JLabel lblDiagonalMayor;
+    private JTextField txtDiagonalMayor;
+    private JLabel lblDiagonalMenor;
+    private JTextField txtDiagonalMenor;
+    private JLabel lblNumeroLados;
+    private JTextField txtNumeroLados;
+    private JLabel lblApotema;
+    private JTextField txtApotema;
+    private JLabel lblBaseMayor;
+    private JTextField txtBaseMayor;
+    private JLabel lblBaseMenor;
+    private JTextField txtBaseMenor;
+    private JButton btnCalcular;
+    private JButton btnLimpiar;
+    private JLabel lblResultado;
 
     public CalculadoraAreasPerimetrosUI() {
         // Configurar la ventana
