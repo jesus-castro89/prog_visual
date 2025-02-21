@@ -42,4 +42,8 @@
             <toc-element topic="calculadora-logic.md"/>
         </toc-element>
     </toc-element>
+    <toc-element toc-title="Proyectos Parciales">
+        <toc-element topic="proyecto-1.md">
+        </toc-element>
+    </toc-element>
 </instance-profile>

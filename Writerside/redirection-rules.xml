@@ -15,4 +15,8 @@
         </description>
         <accepts>practica-1.html</accepts>
     </rule>
+    <rule id="60a84ffd">
+        <description><![CDATA[Created after removal of "<proy1-start.md>" from Programación Visual]]></description>
+        <accepts>proy1-start.html</accepts>
+    </rule>
 </rules>
