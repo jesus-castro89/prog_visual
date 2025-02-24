@@ -281,3 +281,52 @@ public CalculadoraAreasPerimetrosUI() {
     });
 }
 ```
+
+## Parte 3: Implementando la función de limpieza de campos
+
+En esta parte, vamos a implementar la función para limpiar los campos de entrada y salida de la interfaz gráfica. Para
+ello, crearemos un método llamado `limpiarCampos` que establecerá el texto de los campos de entrada y salida en blanco.
+
+```java
+private void limpiarCampos() {
+    txtBase.setText("");
+    txtAltura.setText("");
+    txtRadio.setText("");
+    txtLado.setText("");
+    txtDiagonalMayor.setText("");
+    txtDiagonalMenor.setText("");
+    txtNumLados.setText("");
+    txtApotema.setText("");
+    txtBaseMayor.setText("");
+    txtBaseMenor.setText("");
+}
+```
+
+Luego, agregaremos un `ActionListener` al botón de limpieza para que llame al método `limpiarCampos` cada vez que se
+haga clic en el botón.
+
+```java
+public CalculadoraAreasPerimetrosUI() {
+    // Resto del código
+    ...
+    // Agregar ActionListener al botón de limpieza
+    btnLimpiar.addActionListener(e -> {
+        limpiarCampos();
+    });
+}
+```
+
+Así mismo, agregamos un llamado a la función, cada que se cambie la figura geométrica seleccionada.
+
+```java
+public CalculadoraAreasPerimetrosUI() {
+    // Resto del código
+    ...
+    // Agregar ItemListener al JComboBox
+    listaFiguras.addItemListener(e -> {
+        ocultarCamposEntrada();
+        mostrarCamposEntrada();
+        limpiarCampos();
+    });
+}
+```
