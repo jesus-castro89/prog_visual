@@ -54,7 +54,8 @@ En la ventana de diseño de la interfaz gráfica, vamos a agregar los siguientes
 - Dos paneles (`JPanel`): uno para los campos de entrada y otro para los resultados de los cálculos.
     - El panel superior contendrá el resultado de los cálculos.
     - El panel inferior contendrá los campos de entrada y los botones para realizar los cálculos.
-- En el panel superior, agregaremos un `JLabel` para mostrar el resultado de los cálculos.
+- En el panel superior, agregaremos dos `JLabel` para mostrar el resultado de los cálculos.
+    - Uno para mostrar el área y otro para mostrar el perímetro.
 - En el panel inferior, agregaremos los siguientes componentes:
     - Un `JComboBox` para seleccionar la figura geométrica.
         - Las opciones serán: Cuadrado, Rectángulo, Triángulo, Círculo, Trapecio, Rombo, Polígono regular, Elipse y
@@ -192,25 +193,30 @@ geométrica seleccionada.
     }
 
     private void mostrarCamposEntrada() {
+    
         // Obtenemos el índice del elemento seleccionado
         int index = listaFiguras.getSelectedIndex();
         // Mostramos los campos correspondientes
         // al índice seleccionado
         switch (index) {
+            // Para el cuadrado
             case 0 -> {
                 lblLado.setVisible(true);
                 txtLado.setVisible(true);
             }
+            // Para el rectángulo y el triángulo
             case 1, 2 -> {
                 lblBase.setVisible(true);
                 txtBase.setVisible(true);
                 lblAltura.setVisible(true);
                 txtAltura.setVisible(true);
             }
+            // Para el círculo
             case 3 -> {
                 lblRadio.setVisible(true);
                 txtRadio.setVisible(true);
             }
+            // Para el trapecio
             case 4 -> {
                 lblBaseMayor.setVisible(true);
                 txtBaseMayor.setVisible(true);
@@ -219,12 +225,14 @@ geométrica seleccionada.
                 lblAltura.setVisible(true);
                 txtAltura.setVisible(true);
             }
+            // Para el rombo
             case 5 -> {
                 lblDiagonalMayor.setVisible(true);
                 txtDiagonalMayor.setVisible(true);
                 lblDiagonalMenor.setVisible(true);
                 txtDiagonalMenor.setVisible(true);
             }
+            // Para el polígono regular
             case 6 -> {
                 lblNumLados.setVisible(true);
                 txtNumLados.setVisible(true);
@@ -233,6 +241,7 @@ geométrica seleccionada.
                 lblApotema.setVisible(true);
                 txtApotema.setVisible(true);
             }
+            // Para el paralelogramo
             default -> {
                 lblBase.setVisible(true);
                 txtBase.setVisible(true);
