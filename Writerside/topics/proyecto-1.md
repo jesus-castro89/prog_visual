@@ -73,6 +73,12 @@ En la ventana de diseño de la interfaz gráfica, vamos a agregar los siguientes
     - Un `JButton` para calcular el área y el perímetro.
     - Un `JButton` para limpiar los campos de entrada y salida.
 
+![area_perimetro_1.png](area_perimetro_1.png)
+
+> **Nota:** Puedes organizar los componentes de la interfaz gráfica de la calculadora de la forma que prefieras. Por
+> ejemplo, puedes colocar los campos de entrada en una cuadrícula o en una lista vertical. También puedes cambiar el
+> tamaño y la posición de los componentes según tus preferencias.
+
 Una vez agregados los componentes, vamos a organizarlos en la ventana de la interfaz gráfica de la calculadora. Para
 ello, Colocaremos primero los pares de `JLabel` y `JTextField` para los campos de entrada, luego el `JButton` para
 calcular el área y el perímetro, y finalmente el `JButton` para limpiar los campos de entrada y salida.
@@ -271,8 +277,7 @@ public CalculadoraAreasPerimetrosUI() {
     ocultarCamposEntrada();
     
     // Mostramos los campos de la primer figura
-    lblLado.setVisible(true);
-    txtLado.setVisible(true);
+    mostrarCamposEntrada();
 
     // Agregar ItemListener al JComboBox
     listaFiguras.addItemListener(e -> {
@@ -330,3 +335,193 @@ public CalculadoraAreasPerimetrosUI() {
     });
 }
 ```
+
+## Parte 4: Implementando las funciones de cálculo de las áreas y perímetros
+
+En esta parte, vamos a implementar las funciones para calcular el área y el perímetro de cada una de las figuras
+geométricas mencionadas. Para ello, crearemos un método para cada figura geométrica que recibirá los valores de los
+campos de entrada y devolverá el área y el perímetro correspondientes.
+
+Crearemos entonces un método para cada figura geométrica de la lista:
+
+```java
+    private void calcularCuadrado() {
+
+        // Obtenemos el valor del lado y lo convertimos a double
+        double lado = Double.parseDouble(txtLado.getText());
+        double area = lado * lado;
+        double perimetro = lado * 4;
+        lblArea.setText("Area del cuadrado: %.2f".formatted(area));
+        lblPerimetro.setText("Perímetro del cuadrado: %.2f".formatted(perimetro));
+    }
+
+    private void calcularRectangulo() {
+
+        // Obtenemos el valor de la base y la altura y los convertimos a double
+        double base = Double.parseDouble(txtBase.getText());
+        double altura = Double.parseDouble(txtAltura.getText());
+        double area = base * altura;
+        double perimetro = (base * 2) + (altura * 2);
+        lblArea.setText("Área del Rectangulo: %.2f".formatted(area));
+        lblPerimetro.setText("Perímetro del Rectangulo: %.2f".formatted(perimetro));
+    }
+
+    private void calcularTriangulo() {
+
+        // Obtenemos el valor de la base y la altura y los convertimos a double
+        double base = Double.parseDouble(txtBase.getText());
+        double altura = Double.parseDouble(txtAltura.getText());
+        double area = (base * altura) / 2;
+        double perimetro = base * 3;
+        lblArea.setText("Área del Triángulo: %.2f".formatted(area));
+        lblPerimetro.setText("Perímetro del Triángulo: %.2f".formatted(perimetro));
+    }
+
+    private void calcularCirculo() {
+
+        // Obtenemos el valor del radio y lo convertimos a double
+        double radio = Double.parseDouble(txtRadio.getText());
+        double area = Math.PI * Math.pow(radio, 2);
+        double perimetro = 2 * Math.PI * radio;
+        lblArea.setText("Área del Círculo: %.2f".formatted(area));
+        lblPerimetro.setText("Perímetro del Círculo: %.2f".formatted(perimetro));
+    }
+
+    private void calcularTrapecio() {
+
+        // Obtenemos el valor de la base mayor, la base menor y la altura y los convertimos a double
+        double baseMayor = Double.parseDouble(txtBaseMayor.getText());
+        double baseMenor = Double.parseDouble(txtBaseMenor.getText());
+        double altura = Double.parseDouble(txtAltura.getText());
+        double area = ((baseMayor + baseMenor) * altura) / 2;
+        double perimetro = baseMayor + baseMenor + (2 * Math.sqrt(Math.pow((baseMayor - baseMenor) / 2, 2) + Math.pow(altura, 2)));
+        lblArea.setText("Área del Trapecio: %.2f".formatted(area));
+        lblPerimetro.setText("Perímetro del Trapecio: %.2f".formatted(perimetro));
+    }
+
+    private void calcularRombo() {
+
+        // Obtenemos el valor de la diagonal mayor y la diagonal menor y los convertimos a double
+        double diagonalMayor = Double.parseDouble(txtDiagonalMayor.getText());
+        double diagonalMenor = Double.parseDouble(txtDiagonalMenor.getText());
+        double area = (diagonalMayor * diagonalMenor) / 2;
+        double perimetro = 4 * Math.sqrt(Math.pow(diagonalMayor / 2, 2) + Math.pow(diagonalMenor / 2, 2));
+        lblArea.setText("Área del Rombo: %.2f".formatted(area));
+        lblPerimetro.setText("Perímetro del Rombo: %.2f".formatted(perimetro));
+    }
+
+    private void calcularPoligono() {
+
+        // Obtenemos el valor del número de lados, el lado y la apotema y los convertimos a double
+        double numLados = Double.parseDouble(txtNumLados.getText());
+        double lado = Double.parseDouble(txtLado.getText());
+        double apotema = Double.parseDouble(txtApotema.getText());
+        double perimetro = numLados * lado;
+        double area = (perimetro * apotema) / 2;
+        lblArea.setText("Área del Polígono: %.2f".formatted(area));
+        lblPerimetro.setText("Perímetro del Polígono: %.2f".formatted(perimetro));
+    }
+    
+    private void calcularParalelogramo() {
+
+        // Obtenemos el valor de la base, la altura y el lado y los convertimos a double
+        double base = Double.parseDouble(txtBase.getText());
+        double altura = Double.parseDouble(txtAltura.getText());
+        double lado = Double.parseDouble(txtLado.getText());
+        double perimetro = (base * 2) + (lado * 2);
+        double area = base * altura;
+        lblArea.setText("Área del Paralelogramo: %.2f".formatted(area));
+        lblPerimetro.setText("Perímetro del Paralelogramo: %.2f".formatted(perimetro));
+    }
+```
+
+### Parte 5: Creamos una función de validación de datos
+
+En esta parte, vamos a implementar una función para validar los datos de entrada. Esta función verificará que los
+valores ingresados en los campos de entrada sean numéricos y positivos. Si los valores no son válidos, la función
+mostrará un mensaje de error en la interfaz gráfica.
+
+Para ello, crearemos un método llamado `validarDatosEntrada` que verificará que los valores ingresados en los campos de
+entrada sean numéricos y positivos. Si los valores no son válidos, la función mostrará un mensaje de error en la
+interfaz gráfica.
+
+```java
+private boolean validarDatosEntrada() {
+
+    try {
+        // Verificamos que los valores ingresados sean numéricos
+        double base = Double.parseDouble(txtBase.getText());
+        double altura = Double.parseDouble(txtAltura.getText());
+        double radio = Double.parseDouble(txtRadio.getText());
+        double lado = Double.parseDouble(txtLado.getText());
+        double diagonalMayor = Double.parseDouble(txtDiagonalMayor.getText());
+        double diagonalMenor = Double.parseDouble(txtDiagonalMenor.getText());
+        double numLados = Double.parseDouble(txtNumLados.getText());
+        double apotema = Double.parseDouble(txtApotema.getText());
+        double baseMayor = Double.parseDouble(txtBaseMayor.getText());
+        double baseMenor = Double.parseDouble(txtBaseMenor.getText());
+
+        // Verificamos que los valores ingresados sean positivos
+        if (base <= 0 || altura <= 0 || radio <= 0 || lado <= 0 || diagonalMayor <= 0 || diagonalMenor <= 0 || numLados <= 0 || apotema <= 0 || baseMayor <= 0 || baseMenor <= 0) {
+            JOptionPane.showMessageDialog(this, "Los valores ingresados deben ser positivos", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
+        return true;
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Los valores ingresados deben ser numéricos", "Error", JOptionPane.ERROR_MESSAGE);
+        return false;
+    }
+}
+```
+
+Con esta función, solo nos falta una función que se encargue de realizar los cálculos de las áreas y perímetros de las
+figuras geométricas. Para ello, crearemos un método llamado `calcularFigura` que llamará a la función de validación de
+datos y luego a la función correspondiente a la figura geométrica seleccionada.
+
+```java
+    private void calcularFigura() {
+
+        int index = listaFiguras.getSelectedIndex();
+        if (validarDatosEntrada(index)) {
+            switch (index) {
+                case 0 -> calcularCuadrado();
+                case 1 -> calcularRectangulo();
+                case 2 -> calcularTriangulo();
+                case 3 -> calcularCirculo();
+                case 4 -> calcularTrapecio();
+                case 5 -> calcularRombo();
+                case 6 -> calcularPoligono();
+                default -> calcularParalelogramo();
+            }
+        }
+    }
+```
+
+Finalmente, agregaremos un `ActionListener` al botón de cálculo para que llame al método `calcularFigura` cada vez que
+se haga clic en el botón.
+
+```java
+public CalculadoraAreasPerimetrosUI() {
+    // Resto del código
+    ...
+    // Agregar ActionListener al botón de cálculo
+    btnCalcular.addActionListener(e -> {
+        calcularFigura();
+    });
+}
+```
+
+Con esto, hemos implementado las funciones necesarias para realizar los cálculos de las áreas y perímetros de las
+figuras geométricas. Ahora podemos ejecutar la aplicación y probar la calculadora de áreas y perímetros.
+
+## Para la entrega
+
+Para la entrega de este proyecto, debes realizar lo siguiente:
+
+* Modifica las etiquetas de los campos y asigna un color de texto diferente a cada una.
+* Modifica el color del texto del área dea de 24px y color Azul.
+* Modifica el color del texto del perímetro sea de 24px y color Rojo.
+
+Por último comprime tu proyecto y súbelo a la plataforma junto a la portada con los datos del estudiante y el
+profesor.
