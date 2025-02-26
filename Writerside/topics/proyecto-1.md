@@ -92,9 +92,48 @@ Por lo que para la primera figura del `JComboBox` se mostrarán los campos de la
 > **Nota:** Para ocultar y mostrar los campos de entrada según la figura geométrica seleccionada, podemos utilizar un
 > `ItemListener` en el `JComboBox` y cambiar la visibilidad de los componentes correspondientes.
 
+Lo siguiente es nombrar los componentes, para ello debemos de seleccionar cada componente y en la sección de propiedades
+del componente, en la sección de `field name` colocaremos un nombre que nos permita identificarlo fácilmente en el
+código.
+
+Por ejemplo, para el `JComboBox` de la figura geométrica, podemos colocar el nombre `listaFiguras`. Para el `JLabel` y
+el `JTextField` de la base, podemos colocar los nombres `lblBase` y `txtBase`, respectivamente. Y así sucesivamente para
+los demás componentes.
+
+![area_perimetro_2.png](area_perimetro_2.png)
+
 > **Nota:** Recuerda nombrar a tu gusto cada componente para poder identificarlos fácilmente en el código. Y también
 > recuerda nombrar el panel principal de la ventana.
 > {style="note"}
+
+En el caso del presente ejemplo, los nombres de los componentes son los siguientes:
+
+- `panelPrincipal`: Panel principal de la ventana.
+- `listaFiguras`: `JComboBox` para seleccionar la figura geométrica.
+- `lblBase`: `JLabel` para la base.
+- `txtBase`: `JTextField` para ingresar el valor de la base.
+- `lblAltura`: `JLabel` para la altura.
+- `txtAltura`: `JTextField` para ingresar el valor de la altura.
+- `lblRadio`: `JLabel` para el radio.
+- `txtRadio`: `JTextField` para ingresar el valor del radio.
+- `lblLado`: `JLabel` para el lado.
+- `txtLado`: `JTextField` para ingresar el valor del lado.
+- `lblDiagonalMayor`: `JLabel` para la diagonal mayor.
+- `txtDiagonalMayor`: `JTextField` para ingresar el valor de la diagonal mayor.
+- `lblDiagonalMenor`: `JLabel` para la diagonal menor.
+- `txtDiagonalMenor`: `JTextField` para ingresar el valor de la diagonal menor.
+- `lblNumLados`: `JLabel` para el número de lados.
+- `txtNumLados`: `JTextField` para ingresar el valor del número de lados.
+- `lblApotema`: `JLabel` para la apotema.
+- `txtApotema`: `JTextField` para ingresar el valor de la apotema.
+- `lblBaseMayor`: `JLabel` para la base mayor.
+- `txtBaseMayor`: `JTextField` para ingresar el valor de la base mayor.
+- `lblBaseMenor`: `JLabel` para la base menor.
+- `txtBaseMenor`: `JTextField` para ingresar el valor de la base menor.
+- `btnCalcular`: `JButton` para calcular el área y el perímetro.
+- `btnLimpiar`: `JButton` para limpiar los campos de entrada y salida.
+- `lblArea`: `JLabel` para mostrar el resultado del área.
+- `lblPerimetro`: `JLabel` para mostrar el resultado del perímetro.
 
 Una vez hecho lo anterior, haremos que la clase asociada a la ventana herede de `JFrame` y agregaremos un constructor
 que inicialice la ventana y los componentes de la interfaz gráfica. En este constructor, agregaremos los componentes al
