@@ -57,8 +57,9 @@ En la ventana de diseño de la interfaz gráfica, vamos a agregar los siguientes
 - En el panel superior, agregaremos dos `JLabel` para mostrar el resultado de los cálculos.
     - Uno para mostrar el área y otro para mostrar el perímetro.
 - En el panel inferior, agregaremos los siguientes componentes:
+    - Un `JLabel` para mostrar el texto: `Figura`
     - Un `JComboBox` para seleccionar la figura geométrica.
-        - Las opciones serán: Cuadrado, Rectángulo, Triángulo, Círculo, Trapecio, Rombo, Polígono regular, Elipse y
+        - Las opciones serán: Cuadrado, Rectángulo, Triángulo, Círculo, Trapecio, Rombo, Polígono regular y
           Paralelogramo.
     - Un `JLabel` y un `JTextField` para ingresar el valor de la base.
     - Un `JLabel` y un `JTextField` para ingresar el valor de la altura.
@@ -105,6 +106,10 @@ los demás componentes.
 > **Nota:** Recuerda nombrar a tu gusto cada componente para poder identificarlos fácilmente en el código. Y también
 > recuerda nombrar el panel principal de la ventana.
 > {style="note"}
+
+> **Es de suma importancia recordar que los nombres de los atributos(componentes visuales) deben ser escritos en
+> minúscula, al igual que las funciones. Mientras la o las clases en mayúscula**
+> {style="warning"}
 
 En el caso del presente ejemplo, los nombres de los componentes son los siguientes:
 
@@ -485,33 +490,133 @@ entrada sean numéricos y positivos. Si los valores no son válidos, la función
 interfaz gráfica.
 
 ```java
-private boolean validarDatosEntrada() {
+  private boolean validarDatosEntrada(int index) {
 
-    try {
-        // Verificamos que los valores ingresados sean numéricos
-        double base = Double.parseDouble(txtBase.getText());
-        double altura = Double.parseDouble(txtAltura.getText());
-        double radio = Double.parseDouble(txtRadio.getText());
-        double lado = Double.parseDouble(txtLado.getText());
-        double diagonalMayor = Double.parseDouble(txtDiagonalMayor.getText());
-        double diagonalMenor = Double.parseDouble(txtDiagonalMenor.getText());
-        double numLados = Double.parseDouble(txtNumLados.getText());
-        double apotema = Double.parseDouble(txtApotema.getText());
-        double baseMayor = Double.parseDouble(txtBaseMayor.getText());
-        double baseMenor = Double.parseDouble(txtBaseMenor.getText());
-
-        // Verificamos que los valores ingresados sean positivos
-        if (base <= 0 || altura <= 0 || radio <= 0 || lado <= 0 || diagonalMayor <= 0 || diagonalMenor <= 0 || numLados <= 0 || apotema <= 0 || baseMayor <= 0 || baseMenor <= 0) {
-            JOptionPane.showMessageDialog(this, "Los valores ingresados deben ser positivos", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
+        boolean isValid = true;
+        switch (index) {
+            case 0 -> {
+                try {
+                    double lado = Double.parseDouble(txtLado.getText());
+                    if (lado <= 0) {
+                        isValid = false;
+                        JOptionPane.showMessageDialog(this,
+                                "El lado debe ser mayor a 0", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (NumberFormatException e) {
+                    isValid = false;
+                    JOptionPane.showMessageDialog(this,
+                            "El lado debe ser un número", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            case 1, 2 -> {
+                try {
+                    double base = Double.parseDouble(txtBase.getText());
+                    double altura = Double.parseDouble(txtAltura.getText());
+                    if (base <= 0 || altura <= 0) {
+                        isValid = false;
+                        JOptionPane.showMessageDialog(this,
+                                "La base y la altura deben ser mayores a 0", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (NumberFormatException e) {
+                    isValid = false;
+                    JOptionPane.showMessageDialog(this,
+                            "La base y la altura deben ser números", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            case 3 -> {
+                try {
+                    double radio = Double.parseDouble(txtRadio.getText());
+                    if (radio <= 0) {
+                        isValid = false;
+                        JOptionPane.showMessageDialog(this,
+                                "El radio debe ser mayor a 0", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (NumberFormatException e) {
+                    isValid = false;
+                    JOptionPane.showMessageDialog(this,
+                            "El radio debe ser un número", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            case 4 -> {
+                try {
+                    double baseMayor = Double.parseDouble(txtBaseMayor.getText());
+                    double baseMenor = Double.parseDouble(txtBaseMenor.getText());
+                    double altura = Double.parseDouble(txtAltura.getText());
+                    if (baseMayor <= 0 || baseMenor <= 0 || altura <= 0) {
+                        isValid = false;
+                        JOptionPane.showMessageDialog(this,
+                                "Las bases y la altura deben ser mayores a 0", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (NumberFormatException e) {
+                    isValid = false;
+                    JOptionPane.showMessageDialog(this,
+                            "Las bases y la altura deben ser números", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            case 5 -> {
+                try {
+                    double diagonalMayor = Double.parseDouble(txtDiagonalMayor.getText());
+                    double diagonalMenor = Double.parseDouble(txtDiagonalMenor.getText());
+                    if (diagonalMayor <= 0 || diagonalMenor <= 0) {
+                        isValid = false;
+                        JOptionPane.showMessageDialog(this,
+                                "Las diagonales deben ser mayores a 0", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (NumberFormatException e) {
+                    isValid = false;
+                    JOptionPane.showMessageDialog(this,
+                            "Las diagonales deben ser números", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            case 6 -> {
+                try {
+                    double numLados = Double.parseDouble(txtNumLados.getText());
+                    double lado = Double.parseDouble(txtLado.getText());
+                    double apotema = Double.parseDouble(txtApotema.getText());
+                    if (numLados <= 0 || lado <= 0 || apotema <= 0) {
+                        isValid = false;
+                        JOptionPane.showMessageDialog(this,
+                                "El número de lados, el lado y la apotema deben ser mayores a 0", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (NumberFormatException e) {
+                    isValid = false;
+                    JOptionPane.showMessageDialog(this,
+                            "El número de lados, el lado y la apotema deben ser números", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            default -> {
+                try {
+                    double base = Double.parseDouble(txtBase.getText());
+                    double altura = Double.parseDouble(txtAltura.getText());
+                    double lado = Double.parseDouble(txtLado.getText());
+                    if (base <= 0 || altura <= 0 || lado <= 0) {
+                        isValid = false;
+                        JOptionPane.showMessageDialog(this,
+                                "La base, la altura y el lado deben ser mayores a 0", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (NumberFormatException e) {
+                    isValid = false;
+                    JOptionPane.showMessageDialog(this,
+                            "La base, la altura y el lado deben ser números", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
-
-        return true;
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Los valores ingresados deben ser numéricos", "Error", JOptionPane.ERROR_MESSAGE);
-        return false;
+        return isValid;
     }
-}
 ```
 
 Con esta función, solo nos falta una función que se encargue de realizar los cálculos de las áreas y perímetros de las
