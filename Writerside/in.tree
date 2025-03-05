@@ -34,6 +34,11 @@
         <toc-element topic="jradiobutton.md"/>
         <toc-element topic="jcheckbox.md"/>
     </toc-element>
+    <toc-element toc-title="Barras de Acción y Paneles">
+        <toc-element topic="jtoolbar.md"/>
+        <toc-element topic="jtabbedpane.md"/>
+        <toc-element topic="jspitpane.md"/>
+    </toc-element>
     <toc-element toc-title="Puertos">
         <toc-element topic="puertos-java.md"/>
     </toc-element>
