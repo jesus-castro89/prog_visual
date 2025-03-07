@@ -3,8 +3,8 @@
 ## Objetivo
 
 Crea una aplicación de escritorio en Java usando Swing que simule un editor de texto simple. La interfaz debe incluir
-una barra de herramientas (`JToolBar`) con botones (`JButton`) para acciones básicas como "**Nuevo**", "**Abrir**" y "*
-*Guardar**". Además, debe tener un cuadro combinado (`JComboBox`) para seleccionar el tamaño de la fuente, un campo de
+una barra de herramientas (`JToolBar`) con botones (`JButton`) para acciones básicas como "**Nuevo**", "**Abrir**" y 
+"**Guardar**". Además, debe tener un cuadro combinado (`JComboBox`) para seleccionar el tamaño de la fuente, un campo de
 texto (`JTextField`) para ingresar el nombre del archivo, y una etiqueta (`JLabel`) para mostrar mensajes al usuario.
 
 ## Desarrollo
@@ -16,7 +16,7 @@ texto (`JTextField`) para ingresar el nombre del archivo, y una etiqueta (`JLabe
 3. Crea una nueva ventana mediante el editor de diseño de IntelliJ IDEA y renómbrala como `EditorTexto`.
 4. Renombra el panel principal como `mainPanel`.
 5. Arrastra una barra de herramientas (`JToolBar`) a la ventana y colócala en la parte superior.
-6. Agrega tres botones a la barra de herramientas con los siguientes textos: "Nuevo", "Abrir" y "Guardar".
+6. Agrega tres botones a la barra de herramientas con los siguientes textos: "**Nuevo**", "**Abrir**" y "**Guardar**".
     * Nombra de los botones: `btnNuevo`, `btnAbrir`, `btnGuardar`.
 7. Arrastra una etiqueta (`JLabel`) a la ventana y colócala debajo de la barra de herramientas. Cambia el texto de la
    etiqueta a "Tamaño de Fuente:".
