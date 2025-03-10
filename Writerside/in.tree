@@ -51,6 +51,7 @@
         </toc-element>
         <toc-element toc-title="Práctica 4: Editor de Texto Simple con Barra de Herramientas">
             <toc-element topic="editor-inicio.md"/>
+            <toc-element topic="practi-4-2.md"/>
         </toc-element>
     </toc-element>
     <toc-element toc-title="Proyectos Parciales">
