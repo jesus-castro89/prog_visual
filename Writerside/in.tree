@@ -39,6 +39,14 @@
         <toc-element topic="jtabbedpane.md"/>
         <toc-element topic="jspitpane.md"/>
     </toc-element>
+    <toc-element toc-title="Barras de Progreso y Contenedores">
+        <toc-element topic="jprogressbar.md"/>
+        <toc-element topic="jtable-jlist.md"/>
+    </toc-element>
+    <toc-element toc-title="Spinner &amp; Slider">
+        <toc-element topic="jspinner.md"/>
+        <toc-element topic="jslider.md"/>
+    </toc-element>
     <toc-element toc-title="Puertos">
         <toc-element topic="puertos-java.md"/>
     </toc-element>
