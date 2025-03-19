@@ -13,19 +13,37 @@ Para la pestaña de Información Personal, debemos realizar lo siguiente:
 
 ```java
 private void mostrarInformacion() {
-    String nombre = txtNombre.getText();
-    String apellido = txtApellido.getText();
-    int edad = Integer.parseInt(txtEdad.getText());
-    String correo = txtCorreo.getText();
+        String nombre = txtNombre.getText();
+        String apellido = txtApellido.getText();
+        String edad = txtEdad.getText();
+        String email = txtEmail.getText();
+        int numEdad;
+        if (nombre.isBlank() || apellido.isBlank() ||
+                edad.isBlank() || email.isBlank()) {
 
-    String mensaje = """
-                      Nombre: %s"""
-                      Apellido: %s
-                      Edad: %d
-                      Correo: %s
-                     """.formatted(nombre, apellido, edad, correo);
+            JOptionPane.showMessageDialog(this,
+                    "Por favor llene todos los campos.");
+        } else {
+            try {
 
-    JOptionPane.showMessageDialog(this, mensaje, "Información Personal", JOptionPane.INFORMATION_MESSAGE);
+                numEdad = Integer.parseInt(edad);
+                if (numEdad >= 0) {
+
+                    String info = String.format("""
+                            Nombre: %s
+                            Apellido: %s
+                            Edad: %s
+                            Email: %s
+                            """, nombre, apellido, edad, email);
+                    JOptionPane.showMessageDialog(this, info);
+                } else {
+                    throw new NumberFormatException();
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this,
+                        "La edad debe ser un número entero positivo.");
+            }
+        }
 }
 ```
 
@@ -61,11 +79,23 @@ Para la pestaña de Calculadora, debemos realizar lo siguiente:
 
 ```java
 private void calcularSuma() {
-    int numero1 = Integer.parseInt(txtNumero1.getText());
-    int numero2 = Integer.parseInt(txtNumero2.getText());
-    int resultado = numero1 + numero2;
-
-    lblResultado.setText("Resultado: " + resultado);
+        int num1, num2, suma;
+        try {
+            num1 = Integer.parseInt(txtNum1.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "El primer número no es válido");
+            return;
+        }
+        try {
+            num2 = Integer.parseInt(txtNum2.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "El segundo número no es válido");
+            return;
+        }
+        suma = num1 + num2;
+        lblSuma.setText("La suma de los dígitos es: " + suma);
 }
 ```
 
