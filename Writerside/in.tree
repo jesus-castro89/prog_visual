@@ -63,6 +63,7 @@
         </toc-element>
         <toc-element toc-title="Práctica 5: Diseño por pestañas">
             <toc-element topic="actividad-5-inicio.md"/>
+            <toc-element topic="practica-5-eventos.md"/>
         </toc-element>
     </toc-element>
     <toc-element toc-title="Proyectos Parciales">
