@@ -76,5 +76,6 @@
     <toc-element toc-title="Proyectos Parciales">
         <toc-element topic="proyecto-1.md">
         </toc-element>
+        <toc-element topic="proyecto-2.md"/>
     </toc-element>
 </instance-profile>
