@@ -45,14 +45,14 @@ Además, se agregarán componentes como:
         * Marcaremos las opciones: `paintTicks`, `paintLabels` y `snapToTicks`.
     5. Agrega un `JBotton` con el texto "Agregar" y el nombre `addData`.
 6. En la segunda pestaña realiza lo siguiente:
-    1. Agrega un `JPanel` para mostrar el gráfico de líneas, llamado `chartPanel`.
-    2. Haz que el `chartPanel` esté envuelto en un `JScrollPane`.
+    1. Agrega un `JPanel` para mostrar el gráfico de líneas.
+    2. Haz que el `JPanel` esté envuelto en un `JScrollPane` y nómbralo `chartPanel`.
     3. Agrega un `JComboBox` con las opciones "Líneas", "Barras" y "Circular" y el nombre `chartType`.
     4. Agrega un `JCheckBox` con el texto "Mostrar leyenda" y el nombre `showLegend`.
     5. Agrega un `JButton` con el texto "Generar gráfico" y el nombre `generateChart`.
 7. En la tercera pestaña realiza lo siguiente:
-    1. Agrega un `JPanel` para mostrar el gráfico de barras, llamado `barChartPanel`.
-    2. Haz que el `barChartPanel` esté envuelto en un `JScrollPane`.
+    1. Agrega un `JPanel` para mostrar el gráfico de barras.
+    2. Haz que el `barChartPanel` esté envuelto en un `JScrollPane` y nómbralo `barChartPanel`.
     3. Agrega un `JRadioButton` con el texto "Vertical" y el nombre `vertical`.
     4. Agrega un `JRadioButton` con el texto "Horizontal" y el nombre `horizontal`.
     5. Seleccione ambos botones de radio y agrúpalos en un `ButtonGroup` llamado `orientationGroup`.
@@ -60,8 +60,8 @@ Además, se agregarán componentes como:
        selecciona la opción `Bind to field`.
     7. Agrega un `JButton` con el texto "Generar gráfico" y el nombre `generateBarChart`.
 8. En la cuarta pestaña realiza lo siguiente:
-    1. Agrega un `JPanel` para mostrar el gráfico circular, llamado `pieChartPanel`.
-    2. Haz que el `pieChartPanel` esté envuelto en un `JScrollPane`.
+    1. Agrega un `JPanel` para mostrar el gráfico circular.
+    2. Haz que el `pieChartPanel` esté envuelto en un `JScrollPane` y nómbralo `pieChartPanel`.
     3. Agrega un `JButton` con el texto "Generar gráfico" y el nombre `generatePieChart`.
 
 Con esto, la interfaz de la aplicación estará lista para ser programada.
