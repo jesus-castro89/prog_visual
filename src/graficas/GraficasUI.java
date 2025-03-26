@@ -45,7 +45,7 @@ public class GraficasUI extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
         this.pack();
-        this.setSize(800, 600);
+        this.setSize(1000, 900);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         // Agregar acciones a los componentes
@@ -68,7 +68,8 @@ public class GraficasUI extends JFrame {
     }
 
     private void addLegend(JFreeChart chart) {
-        chart.getLegend().setVisible(showLegend.isSelected());
+        if (chart.getLegend() != null)
+            chart.getLegend().setVisible(showLegend.isSelected());
     }
 
     private JFreeChart createLineChart() {
@@ -165,6 +166,7 @@ public class GraficasUI extends JFrame {
         }
         addLegend(chart);
         ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         chartPanel.setMouseWheelEnabled(true);
         this.chartPanel.setViewportView(chartPanel);
     }
@@ -173,6 +175,7 @@ public class GraficasUI extends JFrame {
         JFreeChart chart = createBarChart();
         addOrientation(chart);
         ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         chartPanel.setMouseWheelEnabled(true);
         this.barChartPanel.setViewportView(chartPanel);
     }
@@ -181,6 +184,7 @@ public class GraficasUI extends JFrame {
         JFreeChart chart = createPieChart();
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setMouseWheelEnabled(true);
+        chartPanel.setPreferredSize(new java.awt.Dimension(800, 600));
         this.pieChartPanel.setViewportView(chartPanel);
     }
 

@@ -300,7 +300,8 @@ leyenda del gráfico, de la siguiente manera:
 
 ```java
 private void addLegend(JFreeChart chart) {
-    chart.getLegend().setVisible(showLegend.isSelected());
+    if (chart.getLegend() != null)
+        chart.getLegend().setVisible(showLegend.isSelected());
 }
 ```
 
@@ -321,6 +322,7 @@ private void addChartPanel() {
     }
     addLegend(chart);
     ChartPanel chartPanel = new ChartPanel(chart);
+    chartPanel.setPreferredSize(new java.awt.Dimension(800, 600));
     chartPanel.setMouseWheelEnabled(true);
     this.chartPanel.setViewportView(chartPanel);
 }
@@ -352,6 +354,7 @@ private void addBarChartPanel() {
     JFreeChart chart = createBarChart();
     addOrientation(chart);
     ChartPanel chartPanel = new ChartPanel(chart);
+    chartPanel.setPreferredSize(new java.awt.Dimension(800, 600));
     chartPanel.setMouseWheelEnabled(true);
     this.barChartPanel.setViewportView(chartPanel);
 }
@@ -379,6 +382,7 @@ panel `pieChartPanel`, de la siguiente manera:
 private void addPieChartPanel() {
     JFreeChart chart = createPieChart();
     ChartPanel chartPanel = new ChartPanel(chart);
+    chartPanel.setPreferredSize(new java.awt.Dimension(800, 600));
     chartPanel.setMouseWheelEnabled(true);
     this.pieChartPanel.setViewportView(chartPanel);
 }
