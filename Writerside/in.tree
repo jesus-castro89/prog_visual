@@ -58,6 +58,7 @@
         <toc-element topic="puertos-java.md"/>
         <toc-element topic="ports-elements.md"/>
         <toc-element topic="protocolos.md"/>
+        <toc-element topic="sockets-java.md"/>
     </toc-element>
     <toc-element toc-title="Practicas">
         <toc-element topic="practica-1.md"/>
