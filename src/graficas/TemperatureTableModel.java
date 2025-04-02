@@ -6,6 +6,7 @@ import java.util.List;
 
 public class TemperatureTableModel extends AbstractTableModel {
     private final List<Integer> data;
+    private final String[] columnName = {"ID", "Temperatura"};
 
     public TemperatureTableModel() {
         data = new ArrayList<>();
@@ -37,10 +38,7 @@ public class TemperatureTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int column) {
-        if (column == 0) {
-            return "ID";
-        } else {
-            return "Temperatura";
-        }
+
+        return columnName[column];
     }
 }

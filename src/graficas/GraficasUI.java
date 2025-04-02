@@ -44,7 +44,6 @@ public class GraficasUI extends JFrame {
         // Configurar la ventana
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane(mainPanel);
-        this.pack();
         this.setSize(1000, 900);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -60,10 +59,15 @@ public class GraficasUI extends JFrame {
         generatePieChart.addActionListener(e -> addPieChartPanel());
     }
 
+    /**
+     * Función que agrega una fila a la tabla con el valor del slider de temperatura.
+     */
     private void addRowToTable() {
-
+        // Obtener el valor del slider de temperatura
         int temperature = temperatureSld.getValue();
+        // Obtener el modelo de la tabla
         TemperatureTableModel model = (TemperatureTableModel) table.getModel();
+        // Agregar una nueva fila a la tabla con el valor del slider
         model.addData(temperature);
     }
 
@@ -72,6 +76,11 @@ public class GraficasUI extends JFrame {
             chart.getLegend().setVisible(showLegend.isSelected());
     }
 
+    /**
+     * Función que crea un gráfico de líneas.
+     *
+     * @return JFreeChart La instancia del gráfico de líneas.
+     */
     private JFreeChart createLineChart() {
         XYDataset dataset = createDataset();
         JFreeChart chart = ChartFactory.createXYLineChart(
