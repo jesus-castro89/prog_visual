@@ -75,6 +75,7 @@
             <toc-element topic="actividad-5-inicio.md"/>
             <toc-element topic="practica-5-eventos.md"/>
         </toc-element>
+        <toc-element topic="practica-6.md"/>
     </toc-element>
     <toc-element toc-title="Proyectos Parciales">
         <toc-element topic="proyecto-1.md">
