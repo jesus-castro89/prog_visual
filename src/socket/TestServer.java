@@ -1,9 +1,11 @@
 package socket;
 
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Date;
 import java.util.Random;
 
 public class TestServer {
@@ -28,13 +30,16 @@ public class TestServer {
             while (true) {
                 try (Socket clientSocket = serverSocket.accept()) {
                     // Crea un writer para enviar mensajes al cliente
-                    PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                    //PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                    ObjectOutputStream objectOut = new ObjectOutputStream(clientSocket.getOutputStream());
                     System.out.println("Cliente conectado desde " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
                     while (!clientSocket.isClosed()) {
                         // Genera un número aleatorio entre 1 y 100
                         int randomNumber = RANDOM.nextInt(100) + 1;
+                        SensorData s= new SensorData(new Date(),
+                                randomNumber, randomNumber, randomNumber, randomNumber);
                         // Envía el número aleatorio al cliente
-                        out.println(randomNumber);
+                        objectOut.writeObject(s);
                         System.out.println("Enviado: " + randomNumber);
                         // Espera un segundo antes de enviar el siguiente número
                         Thread.sleep(DELAY);

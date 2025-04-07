@@ -331,5 +331,5 @@ sockets adecuadamente. Esta es una base sólida para desarrollar aplicaciones de
 
 ## Fecha de entrega
 
-La fecha de entrega es el día 11 de abril de 2025 a las 23:59 horas. Entregas posteriores serán calificadas sobre el 70%
+La fecha de entrega es el día 28 de abril de 2025 a las 23:59 horas. Entregas posteriores serán calificadas sobre el 70%
 de la puntuación total.
