@@ -18,7 +18,7 @@ mensaje al servidor y esperar la respuesta.
    import java.net.*;
    ```
 4. Define la clase `Servidor` y el método `main`:
-   ```java+
+   ```java
     public class Servidor {
          public static void main(String[] args) {
               // Código del servidor aquí
