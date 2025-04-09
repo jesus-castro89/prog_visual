@@ -18,14 +18,14 @@ Para efectos de esta práctica, las clases se generarán dentro del paquete `com
    interfaz `Serializable` para permitir la transmisión de objetos a través de la red.
 2. **Crear la clase `SensorClient`**: Esta clase será responsable de conectarse al servidor y recibir los datos. Debe
    extender `JFrame` para mostrar la interfaz gráfica. En el constructor, se debe crear un `DefaultTableModel` y un
-   `JTable` para mostrar los datos. También se debe crear un botón para cerrar la conexión.
+   `JTable` para mostrar los datos.
 3. **Crear la clase `SensorClientHandler`**: Esta clase será responsable de manejar la conexión con el servidor y
    recibir los datos. Debe implementar `Runnable` para permitir la ejecución en un hilo separado. En el método `run`,
    se debe crear un socket y escuchar los datos enviados por el servidor. Cuando se reciban datos, se deben agregar al
    `DefaultTableModel` del cliente.
 4. **Crear la clase `SensorServer`**: Esta clase será responsable de enviar datos a los clientes. Debe crear un
-   `ServerSocket` y esperar conexiones de clientes. Cuando un cliente se conecta, se debe crear un hilo para manejar la
-   conexión y enviar datos al cliente.
+   `ServerSocket` y esperar conexiones de clientes. Cuando un cliente se conecta, se debe generar un hilo para manejar
+   la conexión y enviar datos al cliente.
 5. **Crear la clase `Main`**: Esta clase será responsable de iniciar el servidor y el cliente. Debe crear una instancia
    de `SensorServer` y `SensorClient` para iniciar la aplicación.
 
@@ -102,7 +102,7 @@ public class SensorData implements Serializable {
                 """.formatted(temperature, humidity,
                 atmosphericPressure, windSpeed, timestamp);
     }
-    
+
     public static void main(String[] args) {
         // Generar datos de sensor aleatorios
         SensorData sensorData = new SensorData();
