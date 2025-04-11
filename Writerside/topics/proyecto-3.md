@@ -1,4 +1,4 @@
-# Practica 7: Registrando datos de un ServerSocket en un TableModel
+# Proyecto 3: Registrando datos de un ServerSocket en un TableModel
 
 ## Objetivo
 
@@ -121,3 +121,4 @@ Analizando la clase `SensorData`:
 - Los métodos `get` permiten acceder a los valores de los atributos.
 - El método `main` genera un objeto `SensorData` y lo imprime en la consola. Esto es útil para probar la clase
   independientemente del cliente o servidor.
+
