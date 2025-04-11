@@ -49,6 +49,38 @@
               </grid>
             </children>
           </scrollpane>
+          <scrollpane id="ad5aa" binding="chartThree">
+            <constraints>
+              <tabbedpane title="Untitled"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </scrollpane>
+          <scrollpane id="76b7d" binding="chartFive">
+            <constraints>
+              <tabbedpane title="Untitled"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </scrollpane>
+          <scrollpane id="1a49e" binding="chartSix">
+            <constraints>
+              <tabbedpane title="Untitled"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </scrollpane>
+          <scrollpane id="6947f" binding="chartSeven">
+            <constraints>
+              <tabbedpane title="Untitled"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children/>
+          </scrollpane>
         </children>
       </tabbedpane>
     </children>
