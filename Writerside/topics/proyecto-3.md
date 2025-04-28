@@ -122,3 +122,238 @@ Analizando la clase `SensorData`:
 - El método `main` genera un objeto `SensorData` y lo imprime en la consola. Esto es útil para probar la clase
   independientemente del cliente o servidor.
 
+### `SensorServer.java`
+
+```java
+package com.example.sensor;
+
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.util.Date;
+import java.util.Random;
+
+public class SensorServer {
+
+    // Este es el puerto en el que el servidor escuchará las conexiones
+    public static final int PORT = 12345;
+    // Este es el host en el que el servidor escuchará las conexiones
+    public static final String HOST = "localhost";
+    // Este es el tiempo de espera entre cada mensaje enviado por el servidor (1000 ms = 1 segundo)
+    private static final int DELAY = 1000;
+
+    public static void main(String[] args) {
+        // Inicia el servidor
+        startServer();
+    }
+
+    public static void startServer() {
+        // Crea una nueva instancia de ServerSocket en el puerto especificado
+        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+            System.out.println("Servidor iniciado en " + HOST + ":" + PORT);
+            while (true) {
+                try (Socket clientSocket = serverSocket.accept()) {
+                    // Crea un writer para enviar mensajes al cliente
+                    //PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                    ObjectOutputStream objectOut = new ObjectOutputStream(clientSocket.getOutputStream());
+                    System.out.println("Cliente conectado desde " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
+                    while (!clientSocket.isClosed()) {
+                        // Genera un número aleatorio entre 1 y 100
+                        SensorData s = new SensorData();
+                        // Envía el número aleatorio al cliente
+                        objectOut.writeObject(s);
+                        System.out.println("Enviado: " + s);
+                        // Espera un segundo antes de enviar el siguiente número
+                        Thread.sleep(DELAY);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Error con cliente: " + e.getMessage());
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error al iniciar el servidor: " + e.getMessage());
+        }
+    }
+}
+```
+
+Analizando la clase `SensorServer`:
+
+* La clase crea un servidor que escucha en el puerto 12345 y envía datos de sensor a los clientes conectados.
+* El servidor utiliza un `ServerSocket` para aceptar conexiones de clientes.
+* Cuando un cliente se conecta, se crea un `ObjectOutputStream` para enviar objetos `SensorData` al cliente.
+* El servidor genera datos de sensor aleatorios y los envía al cliente cada segundo.
+* El servidor maneja excepciones y cierra la conexión con el cliente si ocurre un error.
+* El método `main` inicia el servidor y lo mantiene en ejecución.
+* El método `startServer` es el encargado de crear el `ServerSocket` y aceptar conexiones de clientes. Dentro de un
+  bucle infinito, espera a que un cliente se conecte y luego envía datos de sensor aleatorios al cliente cada segundo.
+  Si ocurre un error, se imprime un mensaje en la consola.
+
+### `SensorClient.java`
+
+En este caso deberás de crear una ventana con un conjunto de `ArrayList` que contenga los datos de los sensores,
+recuerda que el `SensorData` propuesto contiene una serie de datos que puedes utilizar para mostrar en las gráficas.
+
+```java
+package com.example.sensor;
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.net.Socket;
+import java.util.ArrayList;
+
+public class SensorClient extends JFrame {
+
+    private static final String SERVER_IP = "localhost";
+    private static final int PORT = 12345;
+    private JPanel mainPanel;
+    private JScrollPane chartOne;
+    private JTabbedPane tabbedPane1;
+    private JScrollPane chartTwo;
+    private JScrollPane chartThree;
+    private JScrollPane chartFive;
+    private JScrollPane chartSix;
+    private JScrollPane chartSeven;
+    private ArrayList<Double> temperatures;
+    private ArrayList<Double> windSpeeds;
+    private ArrayList<Double> humidities;
+    private ArrayList<Double> atmosphericPressures;
+
+    public SensorClient() {
+        temperatures = new ArrayList<>();
+        windSpeeds = new ArrayList<>();
+        humidities = new ArrayList<>();
+        atmosphericPressures = new ArrayList<>();
+        setTitle("Sensor Data");
+        setSize(900, 600);
+        setContentPane(mainPanel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setVisible(true);
+        connectToServer();
+    }
+
+    private void connectToServer() {
+
+        new Thread(() -> {
+            try (Socket socket = new Socket(SERVER_IP, PORT);
+                 BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+                ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+                System.out.println("Conectado al servidor");
+                SensorData data;
+                do {
+                    data = (SensorData) ois.readObject();
+                    if (data != null) {
+                        temperatures.add(data.getTemperature());
+                        windSpeeds.add(data.getWindSpeed());
+                        humidities.add(data.getHumidity());
+                        atmosphericPressures.add(data.getAtmosphericPressure());
+                        addChartPanel();
+                        addVelocityChartPanel();
+                        addLineChartPanel();
+                        addWindSpeedPanel();
+                        addBarChartPanel();
+                        addThermometerChartPanel();
+                    }
+                } while (data != null);
+            } catch (IOException e) {
+                System.err.println("Error de conexión: " + e.getMessage());
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+    }
+
+    private void addChartPanel() {
+        // Aquí puedes agregar el código para crear y agregar el panel de gráficos
+        // utilizando los datos de temperaturas, humidities, etc.
+    }
+
+    private void addVelocityChartPanel() {
+        // Aquí puedes agregar el código para crear y agregar el panel de gráficos
+        // utilizando los datos de windSpeeds.
+    }
+
+    private void addLineChartPanel() {
+        // Aquí puedes agregar el código para crear y agregar el panel de gráficos
+        // utilizando los datos de temperaturas, humidities, etc.
+    }
+
+    private void addWindSpeedPanel() {
+        // Aquí puedes agregar el código para crear y agregar el panel de gráficos
+        // utilizando los datos de windSpeeds.
+    }
+
+    private void addBarChartPanel() {
+        // Aquí puedes agregar el código para crear y agregar el panel de gráficos
+        // utilizando los datos de temperatures, humidities, etc.
+    }
+
+    private void addThermometerChartPanel() {
+        // Aquí puedes agregar el código para crear y agregar el panel de gráficos
+        // utilizando los datos de temperatures.
+    }
+}
+```
+
+Analizando la clase `SensorClient`:
+
+* La clase extiende `JFrame` para crear una ventana gráfica.
+* Contiene un `JPanel` principal y un `JTabbedPane` para mostrar diferentes gráficos.
+* Contiene listas para almacenar los datos de temperatura, velocidad del viento, humedad y presión atmosférica.
+* El constructor inicializa la ventana, establece el título y el tamaño, y llama al método `connectToServer` para
+  conectarse al servidor.
+* El método `connectToServer` crea un socket y se conecta al servidor. Luego, recibe objetos `SensorData` del servidor
+  y los almacena en las listas correspondientes. También llama a métodos para agregar gráficos a la ventana.
+* Los métodos `addChartPanel`, `addVelocityChartPanel`, `addLineChartPanel`, `addWindSpeedPanel`, `addBarChartPanel` y
+  `addThermometerChartPanel` son métodos de marcador de posición donde se puede agregar el código para crear y agregar
+  los gráficos correspondientes a la ventana. Estos métodos deben implementarse para mostrar los datos de manera
+  visual.
+* El cliente maneja excepciones de conexión y de clase no encontrada. Si ocurre un error, se imprime un mensaje en la
+  consola.
+* El cliente se ejecuta en un hilo separado para no bloquear la interfaz gráfica mientras espera datos del servidor.
+* El cliente se conecta al servidor en el puerto 12345 y espera recibir datos de sensor. Cuando recibe un objeto
+  `SensorData`, lo almacena en las listas correspondientes y llama a los métodos para agregar gráficos a la ventana.
+* El cliente utiliza un `ObjectInputStream` para leer objetos `SensorData` del servidor. Esto permite recibir datos
+  complejos en lugar de solo cadenas de texto.
+
+Toma en consideración que debes de implementar los métodos para mostrar los gráficos en la interfaz gráfica. Puedes
+utilizar los ejemplos de ejercicios previos o investigar como implementarlos con `JFreeChart`. Recuerda que debes de
+instalar la librería de `JFreeChart` para poder utilizarla en tu proyecto. Puedes descargarla desde su sitio web oficial
+o agregarla como dependencia en tu proyecto si estás utilizando un sistema de gestión de dependencias como Maven o
+Gradle.
+
+## Para la entrega
+
+1. Realiza el desarrollo de la aplicación siguiendo los pasos anteriores.
+2. Comprueba que la aplicación funcione correctamente.
+3. Graba un video de la aplicación en funcionamiento.
+4. Crea un archivo ZIP con el código fuente del proyecto.
+5. Sube el video y el archivo ZIP a la plataforma.
+
+## Criterios de Evaluación
+
+| Criterio      | Descripción                                                                       | Puntaje  |
+|---------------|-----------------------------------------------------------------------------------|----------|
+| Portada       | Se anexa portada con datos del equipo.                                            | 5%       |
+| Código        | El código fuente cumple con los requerimientos y está correctamente estructurado. | 30%      |
+| Funcionalidad | La aplicación cumple con los requerimientos y funciona correctamente.             | 30%      |
+| Video         | Se anexa video de la aplicación en funcionamiento.                                | 20%      |
+| Entrega       | Se anexa archivo ZIP con el código fuente del proyecto.                           | 15%      |
+| **Total**     |                                                                                   | **100%** |
+
+## Fecha de Entrega
+
+La fecha de entrega de este entregable es el **5 de mayo de 2025** a las **23:59**. Cualquier entrega después de esta
+fecha no será calificada.
+
+Recuerda que la entrega se realizará a través de la plataforma **Moodle**.
+
+> Recuerda que deberás anexar al trabajo por separado el archivo de portada, video y zip con el código fuente de tu
+> proyecto.
+> {style="note"}
