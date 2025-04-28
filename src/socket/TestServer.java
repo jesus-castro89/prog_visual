@@ -25,31 +25,30 @@ public class TestServer {
 
     public static void startServer() {
         // Crea una nueva instancia de ServerSocket en el puerto especificado
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
-            System.out.println("Servidor iniciado en " + HOST + ":" + PORT);
-            while (true) {
-                try (Socket clientSocket = serverSocket.accept()) {
-                    // Crea un writer para enviar mensajes al cliente
-                    //PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                    ObjectOutputStream objectOut = new ObjectOutputStream(clientSocket.getOutputStream());
-                    System.out.println("Cliente conectado desde " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
-                    while (!clientSocket.isClosed()) {
-                        // Genera un número aleatorio entre 1 y 100
-                        int randomNumber = RANDOM.nextInt(100) + 1;
-                        SensorData s= new SensorData(new Date(),
-                                randomNumber, randomNumber, randomNumber, randomNumber);
-                        // Envía el número aleatorio al cliente
-                        objectOut.writeObject(s);
-                        System.out.println("Enviado: " + randomNumber);
-                        // Espera un segundo antes de enviar el siguiente número
-                        Thread.sleep(DELAY);
+        new Thread(() -> {
+            try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+                System.out.println("Servidor iniciado en " + HOST + ":" + PORT);
+                while (true) {
+                    try (Socket clientSocket = serverSocket.accept()) {
+                        // Crea un writer para enviar mensajes al cliente
+                        PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                        System.out.println("Cliente conectado desde " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
+                        while (!clientSocket.isClosed()) {
+                            // Genera un número aleatorio entre 1 y 100
+                            int randomNumber = RANDOM.nextInt(100) + 1;
+                            // Envía el número aleatorio al cliente
+                            out.println(randomNumber);
+                            System.out.println("Enviado: " + randomNumber);
+                            // Espera un segundo antes de enviar el siguiente número
+                            Thread.sleep(DELAY);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Error con cliente: " + e.getMessage());
                     }
-                } catch (Exception e) {
-                    System.out.println("Error con cliente: " + e.getMessage());
                 }
+            } catch (IOException e) {
+                System.err.println("Error al iniciar el servidor: " + e.getMessage());
             }
-        } catch (IOException e) {
-            System.err.println("Error al iniciar el servidor: " + e.getMessage());
-        }
+        }).start();
     }
 }

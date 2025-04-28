@@ -11,7 +11,7 @@ mensaje al servidor y esperar la respuesta.
 ### Paso 1: Crear el servidor
 
 1. Crea un paquete llamado `servidor` en tu proyecto.
-2. Crea una clase llamada `Servidor` dentro del paquete `servidor`.
+2. Crea una clase llamada `Server` dentro del paquete `servidor`.
 3. Importa las siguientes librerías:
    ```java
    import java.io.*;
@@ -19,15 +19,18 @@ mensaje al servidor y esperar la respuesta.
    ```
 4. Define la clase `Servidor` y el método `main`:
    ```java
-    public class Servidor {
-         public static void main(String[] args) {
-              // Código del servidor aquí
-         }
-    }
-   ```
-5. Define las siguientes constantes:
-   ```java
-   // Este es el puerto en el que el servidor escuchará las conexiones
+    package servidor;
+
+    import java.io.IOException;
+    import java.io.ObjectOutputStream;
+    import java.io.PrintWriter;
+    import java.net.ServerSocket;
+    import java.net.Socket;
+    import java.util.Date;
+    import java.util.Random;
+    
+    public class Server {
+    // Este es el puerto en el que el servidor escuchará las conexiones
     public static final int PORT = 12345;
     // Este es el host en el que el servidor escuchará las conexiones
     public static final String HOST = "localhost";
@@ -35,134 +38,42 @@ mensaje al servidor y esperar la respuesta.
     private static final Random RANDOM = new Random();
     // Este es el tiempo de espera entre cada mensaje enviado por el servidor (1000 ms = 1 segundo)
     private static final int DELAY = 1000;
-   ```
-6. Crea un socket la función `iniciarServidor` que escuche en un puerto específico (por ejemplo, 12345):
-   ```java
-   public static void iniciarServidor() throws IOException {
-        // Crea un socket de servidor en el puerto especificado
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
-            System.out.println("Servidor iniciado. Esperando conexiones...");
-        } catch (IOException e) {
-            System.err.println("Error al iniciar el servidor: " + e.getMessage());
-            throw e;
+    
+        public static void main(String[] args) {
+            // Inicia el servidor
+            startServer();
         }
-   }
-   ```
-7. Crea un ciclo que acepte conexiones de clientes y maneje la comunicación:
-   ```java
-   public static void iniciarServidor() throws IOException {
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
-            System.out.println("Servidor iniciado. Esperando conexiones...");
-            while (true) {
-                try (Socket clientSocket = serverSocket.accept()) {
-                    System.out.println("Cliente conectado: " + clientSocket.getInetAddress());
-                    manejarCliente(clientSocket);
-                } catch (IOException e) {
-                    System.err.println("Error al manejar el cliente: " + e.getMessage());
-                }
-            }
-        } catch (IOException e) {
-            System.err.println("Error al iniciar el servidor: " + e.getMessage());
-            throw e;
-        }
-   }
-   ```
-8. Crea el método `manejarCliente` que maneje la comunicación con el cliente:
-   ```java
-   public static void manejarCliente(Socket clientSocket) {
-        PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-        System.out.println("Cliente conectado desde " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
-        while (!clientSocket.isClosed()) {
-            try {
-                int dataA = RANDOM.nextInt(100);
-                out.println(dataA);
-                System.out.println("Enviando: " + dataA);
-                Thread.sleep(DELAY);
-            } catch (InterruptedException e) {
-                System.err.println("Error al esperar: " + e.getMessage());
-            }
-        }
-   }
-   ```
-9. Cierra el socket del cliente al finalizar la comunicación:
-   ```java
-    public static void manejarCliente(Socket clientSocket) {
-          PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-          System.out.println("Cliente conectado desde " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
-          while (!clientSocket.isClosed()) {
-                try {
-                 int dataA = RANDOM.nextInt(100);
-                 out.println(dataA);
-                 System.out.println("Enviando: " + dataA);
-                 Thread.sleep(DELAY);
-                } catch (InterruptedException e) {
-                 System.err.println("Error al esperar: " + e.getMessage());
-                }
-          }
-          clientSocket.close();
-    }
-    ```
-10. Agrega el bloque `try-catch` para manejar excepciones:
-    ```java
-    public static void manejarCliente(Socket clientSocket) {
-        try (PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
-            System.out.println("Cliente conectado desde " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
-            while (!clientSocket.isClosed()) {
-                try {
-                    int dataA = RANDOM.nextInt(100);
-                    out.println(dataA);
-                    System.out.println("Enviando: " + dataA);
-                    Thread.sleep(DELAY);
-                } catch (InterruptedException e) {
-                    System.err.println("Error al esperar: " + e.getMessage());
-                }
-            }
-            clientSocket.close();
-        } catch (IOException e) {
-            System.err.println("Error al manejar el cliente: " + e.getMessage());
-        }
-    }
-    ```
-11. Toma en cuenta que la sección de código anterior es un ejemplo básico y puede no ser la mejor práctica para manejar
-    múltiples clientes. En un entorno de producción, se recomienda utilizar hilos o un framework como Netty para manejar
-    múltiples conexiones simultáneamente, por ejemplo:
-    ```java
-    public static void manejarCliente(Socket clientSocket) {
-        new Thread(() -> {
-            try (PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)) {
-                System.out.println("Cliente conectado desde " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
-                while (!clientSocket.isClosed()) {
-                    try {
-                        int dataA = RANDOM.nextInt(100);
-                        out.println(dataA);
-                        System.out.println("Enviando: " + dataA);
-                        Thread.sleep(DELAY);
-                    } catch (InterruptedException e) {
-                        System.err.println("Error al esperar: " + e.getMessage());
+    
+        public static void startServer() {
+            // Crea una nueva instancia de ServerSocket en el puerto especificado
+            new Thread(() -> {
+                try (ServerSocket serverSocket = new ServerSocket(PORT)) {
+                    System.out.println("Servidor iniciado en " + HOST + ":" + PORT);
+                    while (true) {
+                        try (Socket clientSocket = serverSocket.accept()) {
+                            // Crea un writer para enviar mensajes al cliente
+                            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+                            System.out.println("Cliente conectado desde " + clientSocket.getInetAddress() + ":" + clientSocket.getPort());
+                            while (!clientSocket.isClosed()) {
+                                // Genera un número aleatorio entre 1 y 100
+                                int randomNumber = RANDOM.nextInt(100) + 1;
+                                // Envía el número aleatorio al cliente
+                                out.println(randomNumber);
+                                System.out.println("Enviado: " + randomNumber);
+                                // Espera un segundo antes de enviar el siguiente número
+                                Thread.sleep(DELAY);
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Error con cliente: " + e.getMessage());
+                        }
                     }
-                }
-            } catch (IOException e) {
-                System.err.println("Error al manejar el cliente: " + e.getMessage());
-            } finally {
-                try {
-                    clientSocket.close();
                 } catch (IOException e) {
-                    System.err.println("Error al cerrar el socket del cliente: " + e.getMessage());
+                    System.err.println("Error al iniciar el servidor: " + e.getMessage());
                 }
-            }
-        }).start();
-    }
-    ```
-12. Finalmente, llama al método `iniciarServidor` en el método `main`:
-    ```java
-    public static void main(String[] args) {
-        try {
-            iniciarServidor();
-        } catch (IOException e) {
-            System.err.println("Error al iniciar el servidor: " + e.getMessage());
+            }).start();
         }
     }
-    ```
+   ```
 
 Con los pasos anteriores, el servidor estará listo para recibir conexiones de clientes y enviar mensajes aleatorios.
 Toma en consideración que el servidor se ejecutará indefinidamente hasta que se detenga manualmente. Así mismo, el
@@ -172,7 +83,7 @@ los mensajes y mostrarlos en consola. El cliente deberá de cerrar la conexión 
 ### Paso 2: Crear el cliente
 
 1. Crea un paquete llamado `cliente` en tu proyecto.
-2. Crea una clase llamada `Cliente` dentro del paquete `cliente`.
+2. Crea una clase llamada `Client` dentro del paquete `cliente`.
 3. Importa las siguientes librerías:
    ```java
    import java.io.*;
@@ -180,107 +91,44 @@ los mensajes y mostrarlos en consola. El cliente deberá de cerrar la conexión 
    ```
 4. Define la clase `Cliente` y el método `main`:
    ```java
-    public class Cliente {
-          public static void main(String[] args) {
-                 // Código del cliente aquí
-          }
-    }
-    ```
-5. Define las siguientes constantes:
-   ```java
-   // Este es el puerto en el que el cliente se conectará al servidor
-    public static final int PORT = 12345;
-    // Este es el host al que el cliente se conectará (localhost)
-    public static final String HOST = "localhost";
-   ```
-6. Crea un socket en el método `iniciarCliente` que se conecte al servidor:
-   ```java
-    public static void iniciarCliente() throws IOException {
-          try (Socket socket = new Socket(HOST, PORT)) {
-                System.out.println("Conectado al servidor: " + socket.getInetAddress());
-          } catch (IOException e) {
-                System.err.println("Error al conectar al servidor: " + e.getMessage());
-                throw e;
-          }
-    }
-    ```
-7. Crea un ciclo que reciba mensajes del servidor y los muestre en consola:
-   ```java
-    public static void iniciarCliente() throws IOException {
-          try (Socket socket = new Socket(HOST, PORT);
-               BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-                System.out.println("Conectado al servidor: " + socket.getInetAddress());
-                String mensaje;
-                while ((mensaje = in.readLine()) != null) {
+    package socket;
+
+    import java.io.BufferedReader;
+    import java.io.IOException;
+    import java.io.InputStreamReader;
+    import java.io.ObjectInputStream;
+    import java.net.Socket;
+    
+    public class Client {
+    
+        private static final String SERVER_IP = "localhost";
+        private static final int PORT = 12345;
+        private static int timeCounter = 0;
+    
+        public static void main(String[] args) {
+            // Inicia el cliente
+            connectToServer();
+        }
+    
+        public static void connectToServer() {
+            new Thread(() -> {
+                try (Socket socket = new Socket(SERVER_IP, PORT);
+                     BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+                    System.out.println("Conectado al servidor");
+                    String mensaje= in.readLine();
                     System.out.println("Recibido del servidor: " + mensaje);
+                    int contador = 0;
+                    while ((mensaje = in.readLine()) != null && contador < 10) {
+                        System.out.println("Recibido del servidor: " + mensaje);
+                        contador++;
+                    }
+                    socket.close();
+                } catch (IOException e) {
+                    System.err.println("Error de conexión: " + e.getMessage());
+                    throw new RuntimeException(e);
                 }
-          } catch (IOException e) {
-                System.err.println("Error al conectar al servidor: " + e.getMessage());
-                throw e;
-          }
-    }
-    ```
-8. Agrega el bloque `try-catch` para manejar excepciones:
-   ```java
-    public static void iniciarCliente() throws IOException {
-          try (Socket socket = new Socket(HOST, PORT);
-               BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-                System.out.println("Conectado al servidor: " + socket.getInetAddress());
-                String mensaje;
-                while ((mensaje = in.readLine()) != null) {
-                    System.out.println("Recibido del servidor: " + mensaje);
-                }
-          } catch (IOException e) {
-                System.err.println("Error al conectar al servidor: " + e.getMessage());
-                throw e;
-          }
-    }
-    ```
-9. Llama al método `iniciarCliente` en el método `main`:
-   ```java
-    public static void main(String[] args) {
-          try {
-                iniciarCliente();
-          } catch (IOException e) {
-                System.err.println("Error al iniciar el cliente: " + e.getMessage());
-          }
-    }
-    ```
-10. Agrega un contador para cerrar la conexión después de recibir 10 mensajes:
-    ```java
-    public static void iniciarCliente() throws IOException {
-          try (Socket socket = new Socket(HOST, PORT);
-               BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-                System.out.println("Conectado al servidor: " + socket.getInetAddress());
-                String mensaje;
-                int contador = 0;
-                while ((mensaje = in.readLine()) != null && contador < 10) {
-                    System.out.println("Recibido del servidor: " + mensaje);
-                    contador++;
-                }
-          } catch (IOException e) {
-                System.err.println("Error al conectar al servidor: " + e.getMessage());
-                throw e;
-          }
-    }
-    ```
-11. Por último, cierra el socket del cliente al finalizar la comunicación:
-    ```java
-    public static void iniciarCliente() throws IOException {
-          try (Socket socket = new Socket(HOST, PORT);
-               BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-                System.out.println("Conectado al servidor: " + socket.getInetAddress());
-                String mensaje;
-                int contador = 0;
-                while ((mensaje = in.readLine()) != null && contador < 10) {
-                    System.out.println("Recibido del servidor: " + mensaje);
-                    contador++;
-                }
-                socket.close();
-          } catch (IOException e) {
-                System.err.println("Error al conectar al servidor: " + e.getMessage());
-                throw e;
-          }
+            }).start();
+        }
     }
     ```
 

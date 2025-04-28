@@ -21,17 +21,17 @@ public class TestClient {
         new Thread(() -> {
             try (Socket socket = new Socket(SERVER_IP, PORT);
                  BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-                ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
                 System.out.println("Conectado al servidor");
-                SensorData data = (SensorData) ois.readObject();
-                while (data != null) {
-                    System.out.println("Recibido: " + data);
-                    timeCounter++;
-                    data = (SensorData) ois.readObject();
+                String mensaje= in.readLine();
+                System.out.println("Recibido del servidor: " + mensaje);
+                int contador = 0;
+                while ((mensaje = in.readLine()) != null && contador < 10) {
+                    System.out.println("Recibido del servidor: " + mensaje);
+                    contador++;
                 }
+                socket.close();
             } catch (IOException e) {
                 System.err.println("Error de conexión: " + e.getMessage());
-            } catch (ClassNotFoundException e) {
                 throw new RuntimeException(e);
             }
         }).start();
