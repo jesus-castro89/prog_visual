@@ -349,7 +349,7 @@ Gradle.
 
 ## Fecha de Entrega
 
-La fecha de entrega de este entregable es el **5 de mayo de 2025** a las **23:59**. Cualquier entrega después de esta
+La fecha de entrega de este entregable es el **6 de mayo de 2025** a las **23:59**. Cualquier entrega después de esta
 fecha no será calificada.
 
 Recuerda que la entrega se realizará a través de la plataforma **Moodle**.
