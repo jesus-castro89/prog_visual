@@ -289,3 +289,93 @@ private void addChartPanel() {
     this.chartOne.setViewportView(chartPanel);
 }
 ```
+
+## Gráfica de Termómetro
+
+Para crear una gráfica de termómetro con `JFreeChart`, debemo de tomar un único valor para graficar. Para ello, se puede
+utilizar la clase `ThermometerPlot` de `JFreeChart`. A continuación se muestra un ejemplo de cómo crear una gráfica de
+termómetro con `JFreeChart`:
+
+```java
+private void addThermometerChartPanel() {
+    // Creamos un Dataset con la última temperatura registrada
+    DefaultValueDataset dataset = new DefaultValueDataset(
+            temperatures.getLast());
+    // Creamos un objeto ThermometerPlot a partir del dataset
+    ThermometerPlot plot = new ThermometerPlot(dataset);
+    // Establecemos el rango del termómetro 0 a 35 grados
+    plot.setRange(0, 35);
+    // Establecemos el tamaño del contorno del termómetro
+    plot.setThermometerStroke(new BasicStroke(2.0f));
+    // Creamos los rangos de temperatura
+    // Para los rangos tenemos 3 valores: 
+    // Número de rango, valor mínimo y valor máximo
+    // En este caso, el rango 0 es de 0 a 19 grados
+    plot.setSubrange(0, 0, 19);
+    // El rango 1 es de 19 a 30 grados
+    plot.setSubrange(1, 19, 30);
+    // El rango 2 es de 30 a 35 grados
+    plot.setSubrange(2, 30, 35);
+    // Establecemos la unidad de medida del termómetro
+    plot.setUnits(ThermometerPlot.UNITS_CELCIUS);
+    // Creamos un objeto JFreeChart a partir del plot
+    JFreeChart chart = new JFreeChart("Termómetro",
+            JFreeChart.DEFAULT_TITLE_FONT,
+            plot,
+            false);
+    // Creamos un objeto ChartPanel a partir del chart
+    ChartPanel chartPanel = new ChartPanel(chart);
+    chartPanel.setPreferredSize(new Dimension(400, 300));
+    // Asignamos a un panel existe en la ventana
+    chartSeven.setViewportView(chartPanel);
+}
+```
+
+## Gráfica de Velocimetro
+
+Para crear una gráfica de velocímetro con `JFreeChart`, debemo de tomar un único valor para graficar. Para ello, se
+puede utilizar la clase `MeterPlot` de `JFreeChart`. A continuación se muestra un ejemplo de cómo crear una gráfica de
+velocímetro con `JFreeChart`:
+
+```java
+private void addWindSpeedPanel() {
+    // Creamos un Dataset con la última velocidad de viento registrada
+    DefaultValueDataset dataset = new DefaultValueDataset(
+            windSpeeds.getLast());
+    // Creamos un objeto MeterPlot a partir del dataset
+    MeterPlot plot = new MeterPlot(dataset);
+    // Establecemos el rango del velocímetro 0 a 20 km/h
+    plot.setRange(new Range(0, 20));
+    // Creamos los intervalos de velocidad
+    // Para los intervalos tenemos 5 valores:
+    // Nombre del intervalo, rango de valores, color del intervalo,
+    // grosor del intervalo y color del contorno de la línea
+    // En este caso, el intervalo Bajo es de 0 a 5 km/h, de color verde
+    plot.addInterval(new MeterInterval("Bajo", new Range(0, 5),
+            Color.green, new BasicStroke(0.7f), Color.green));
+    // El intervalo Medio es de 5 a 10 km/h, de color amarillo
+    plot.addInterval(new MeterInterval("Medio", new Range(5, 10),
+            Color.yellow, new BasicStroke(0.7f), Color.yellow));
+    // El intervalo Alto es de 10 a 20 km/h, de color rojo
+    plot.addInterval(new MeterInterval("Alto", new Range(10, 20),
+            Color.red, new BasicStroke(0.7f), Color.red));
+    // Definimos el color del contorno del velocímetro
+    plot.setDialOutlinePaint(Color.BLACK);
+    // Definimos el color del fondo del velocímetro
+    plot.setDialBackgroundPaint(Color.WHITE);
+    // Definimos el color de la aguja del velocímetro
+    plot.setNeedlePaint(Color.BLUE);
+    plot.setTickLabelsVisible(true);
+    plot.setTickLabelFont(new Font("Arial", Font.BOLD, 12));
+    plot.setTickLabelPaint(Color.DARK_GRAY);
+    plot.setUnits("km/h");
+    plot.setDialShape(DialShape.PIE);
+    JFreeChart chart = new JFreeChart("Velocímetro",
+            JFreeChart.DEFAULT_TITLE_FONT,
+            plot,
+            false);
+    ChartPanel chartPanel = new ChartPanel(chart);
+    chartPanel.setPreferredSize(new Dimension(400, 300));
+    chartFive.setViewportView(chartPanel);
+}
+```

@@ -1,4 +1,4 @@
-# Proyecto 3: Registrando datos de un ServerSocket en un TableModel
+# Proyecto 3: Registrando datos de un ServerSocket mediante SWING
 
 ## Objetivo
 
