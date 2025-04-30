@@ -82,6 +82,8 @@
         <toc-element topic="proyecto-1.md">
         </toc-element>
         <toc-element topic="proyecto-2.md"/>
-        <toc-element topic="proyecto-3.md"/>
+        <toc-element topic="proyecto-3.md">
+            <toc-element topic="graph-1.md"/>
+        </toc-element>
     </toc-element>
 </instance-profile>

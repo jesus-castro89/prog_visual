@@ -328,6 +328,13 @@ instalar la librería de `JFreeChart` para poder utilizarla en tu proyecto. Pued
 o agregarla como dependencia en tu proyecto si estás utilizando un sistema de gestión de dependencias como Maven o
 Gradle.
 
+> Las funciones `addChartPanel`, `addVelocityChartPanel`, `addLineChartPanel`, `addWindSpeedPanel`, `addBarChartPanel` y
+> `addThermometerChartPanel` son métodos definidos para modificar el comportamiento de las pestañas mediante la
+> inserción de gráficas en panel del contenedor `JTabbedPane`. Estos métodos deben ser implementados para mostrar
+> gráficas de los datos recibidos del servidor. Puedes utilizar la librería `JFreeChart` para crear las gráficas y
+> agregarlas a los paneles correspondientes. Recuerda que cada método debe crear una gráfica diferente utilizando los
+> datos de temperatura, velocidad del viento, humedad y presión atmosférica.
+
 ## Para la entrega
 
 1. Realiza el desarrollo de la aplicación siguiendo los pasos anteriores.
