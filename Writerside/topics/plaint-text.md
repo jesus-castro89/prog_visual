@@ -1,4 +1,4 @@
-# Guardando datos en archivos Objeto de Java
+# Guardando datos en archivos de texto plano
 
 ## Introducción
 
