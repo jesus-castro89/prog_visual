@@ -61,6 +61,8 @@
         <toc-element topic="sockets-java.md"/>
     </toc-element>
     <toc-element topic="sistemas-datos.md"/>
+    <toc-element topic="plaint-text.md"/>
+    <toc-element topic="objeto-archivo.md"/>
     <toc-element toc-title="Practicas">
         <toc-element topic="practica-1.md"/>
         <toc-element topic="practica-2.md"/>
