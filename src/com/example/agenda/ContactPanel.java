@@ -91,24 +91,4 @@ public class ContactPanel extends JPanel {
     public Agenda getAgenda() {
         return agenda;
     }
-
-    public JTextField getNameTxt() {
-        return nameTxt;
-    }
-
-    public JTextField getLastNameTxt() {
-        return lastNameTxt;
-    }
-
-    public JFormattedTextField getEmailTxt() {
-        return emailTxt;
-    }
-
-    public JFormattedTextField getTelephoneTxt() {
-        return telephoneTxt;
-    }
-
-    public JButton getAceptBtn() {
-        return aceptBtn;
-    }
 }

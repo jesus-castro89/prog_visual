@@ -9,7 +9,7 @@ public class TelephoneFormatter extends JFormattedTextField.AbstractFormatter {
         if (text == null || text.isEmpty()) {
             return null;
         }
-        if (!text.matches("^\\d{3}-\\d{3}-\\d{4}$")) {
+        if (!text.matches("^\\d{10}$")) {
             throw new ParseException("Invalid telephone format", 0);
         }
         return text;
@@ -23,7 +23,7 @@ public class TelephoneFormatter extends JFormattedTextField.AbstractFormatter {
         if (!(value instanceof String telephone)) {
             throw new ParseException("Invalid value type", 0);
         }
-        if (!telephone.matches("^\\d{3}-\\d{3}-\\d{4}$")) {
+        if (!telephone.matches("^\\d{10}$")) {
             throw new ParseException("Invalid telephone format", 0);
         }
         return telephone;

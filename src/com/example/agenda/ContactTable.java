@@ -1,8 +1,6 @@
 package com.example.agenda;
 
-import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 
 public class ContactTable extends AbstractTableModel {
 
@@ -37,6 +35,4 @@ public class ContactTable extends AbstractTableModel {
     public String getColumnName(int column) {
         return columnNames[column];
     }
-
-
 }
