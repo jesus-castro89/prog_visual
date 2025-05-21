@@ -1,9 +1,0 @@
-Este es un archivo de texto de ejemplo.
-Contiene varias líneas de texto.
-Cada línea puede contener diferentes tipos de información.
-Por ejemplo, esta línea contiene un número: 12345
-Y esta línea contiene una fecha: 2023-10-01
-Y esta línea contiene un correo electrónico: algo@correo.com
-Y esta línea contiene una URL: https://www.ejemplo.com
-Y esta línea contiene un número de teléfono: +34 123 456 789
-Y este es el final del archivo.
