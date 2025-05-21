@@ -1,13 +1,20 @@
+# Parte 3: [El modelo de tabla de contactos]
+
+Para efectos de la interfaz principal del proyecto, necesitamos un modelo de tabla que nos permita mostrar los contactos
+para ello deberemos de crear la clase `ContactTableModel` que extiende de `AbstractTableModel` y que implementa los
+métodos necesarios para mostrar los contactos en la tabla.
+
+```java
 package com.example.agenda;
 
 import javax.swing.table.AbstractTableModel;
 
-public class ContactTable extends AbstractTableModel {
+public class ContactTableModel extends AbstractTableModel {
 
     private final Agenda agenda;
     private final String[] columnNames = {"Nombre", "Teléfono", "Email"};
 
-    public ContactTable(Agenda agenda) {
+    public ContactTableModel(Agenda agenda) {
         this.agenda = agenda;
     }
 
@@ -36,3 +43,7 @@ public class ContactTable extends AbstractTableModel {
         return columnNames[column];
     }
 }
+```
+
+Ten en consideración que de ser necesario podrás agregar más columnas a la tabla, para ello solo deberás de
+implementar el método `getColumnCount` y agregar las columnas necesarias al arreglo `columnNames`.

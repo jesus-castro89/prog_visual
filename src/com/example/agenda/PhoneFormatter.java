@@ -3,7 +3,7 @@ package com.example.agenda;
 import javax.swing.*;
 import java.text.ParseException;
 
-public class TelephoneFormatter extends JFormattedTextField.AbstractFormatter {
+public class PhoneFormatter extends JFormattedTextField.AbstractFormatter {
     @Override
     public Object stringToValue(String text) throws ParseException {
         if (text == null || text.isEmpty()) {

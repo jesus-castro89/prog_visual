@@ -14,7 +14,7 @@ public class AgendaApp extends JFrame {
     private Agenda agenda;
 
     public AgendaApp() {
-        contactTable.setModel(new ContactTable(agenda));
+        contactTable.setModel(new ContactTableModel(agenda));
         setTitle("Agenda");
         setContentPane(mainPanel);
         setSize(800, 600);
@@ -42,7 +42,7 @@ public class AgendaApp extends JFrame {
                 int selectedRow = contactTable.getSelectedRow();
                 if (selectedRow != -1) {
                     agenda.removeContact(agenda.getContact(selectedRow));
-                    ((ContactTable) contactTable.getModel()).fireTableDataChanged();
+                    ((ContactTableModel) contactTable.getModel()).fireTableDataChanged();
                     contactTable.repaint();
                 } else {
                     JOptionPane.showMessageDialog(null, "Seleccione un contacto para eliminar.");

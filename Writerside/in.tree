@@ -90,6 +90,9 @@
         </toc-element>
         <toc-element toc-title="Proyecto 4: Agenda GUI">
             <toc-element topic="proyecto-4-1.md"/>
+            <toc-element topic="parte-2.md"/>
+            <toc-element topic="parte-3.md"/>
+            <toc-element topic="parte-4.md"/>
         </toc-element>
     </toc-element>
 </instance-profile>

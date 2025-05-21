@@ -18,7 +18,7 @@ public class ContactPanel extends JPanel {
         add(mainPanel);
         setSize(400, 300);
         emailTxt.setFormatterFactory(new DefaultFormatterFactory(new EmailFormatter()));
-        telephoneTxt.setFormatterFactory(new DefaultFormatterFactory(new TelephoneFormatter()));
+        telephoneTxt.setFormatterFactory(new DefaultFormatterFactory(new PhoneFormatter()));
         aceptBtn.setText("Aceptar");
         cancelBtn.setText("Limpiar");
         aceptBtn.addActionListener(e -> {
@@ -33,8 +33,8 @@ public class ContactPanel extends JPanel {
             lastNameTxt.setText("");
             emailTxt.setText("");
             telephoneTxt.setText("");
-            ContactTable contactTable = (ContactTable) ((AgendaApp) SwingUtilities.getWindowAncestor(this)).getContactTable().getModel();
-            contactTable.fireTableDataChanged();
+            ContactTableModel contactTableModel = (ContactTableModel) ((AgendaApp) SwingUtilities.getWindowAncestor(this)).getContactTable().getModel();
+            contactTableModel.fireTableDataChanged();
             ((AgendaApp) SwingUtilities.getWindowAncestor(this)).getContactTable().repaint();
         });
         cancelBtn.addActionListener(e -> {
@@ -59,8 +59,8 @@ public class ContactPanel extends JPanel {
             if (isValidInput()) {
                 updateContact(contact);
                 JOptionPane.showMessageDialog(this, "Contacto actualizado: " + contact);
-                ContactTable contactTable = (ContactTable) app.getContactTable().getModel();
-                contactTable.fireTableDataChanged();
+                ContactTableModel contactTableModel = (ContactTableModel) app.getContactTable().getModel();
+                contactTableModel.fireTableDataChanged();
                 app.getContactTable().repaint();
                 SwingUtilities.getWindowAncestor(this).dispose();
                 app.setVisible(true);

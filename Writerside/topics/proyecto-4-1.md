@@ -1,4 +1,4 @@
-# Proyecto 4: Parte 1 [Agenda y Contactos]
+# Parte 1 [Agenda y Contactos]
 
 Para dar continuidad a la Actividad 7, vamos a crear una agenda de contactos. En esta actividad, implementaremos una
 clase `Contacto` y una clase `Agenda` que gestionará una lista de contactos. La agenda permitirá agregar, eliminar y
